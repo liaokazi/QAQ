@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* 粉紫「色欲系统」游戏 UI 配色 */
+  --sys-bg: #14061a;
+  --sys-bg-2: #1f0a2b;
+  --sys-panel: #2a0f38;
+  --sys-panel-2: #351345;
+  --sys-pink: #ff5fa2;
+  --sys-pink-deep: #ff2d78;
+  --sys-violet: #b56cff;
+  --sys-lilac: #d9a6ff;
+  --sys-gold: #ffc94d;
+  --sys-green: #5fd7a0;
+  --sys-text: #ffe9f4;
+  --sys-text-dim: #c79bd4;
+  --sys-border: rgba(255, 95, 162, 0.5);
+  --sys-glow: 0 0 14px rgba(255, 45, 120, 0.35);
+  --font-ui: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+}
+
+html,
+body {
+  background: transparent;
+}
+
+#app {
+  font-family: var(--font-ui);
+  color: var(--sys-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 整体面板 */
+.sys-app {
+  max-width: 660px;
+  margin: 0 auto;
+  background: linear-gradient(160deg, var(--sys-bg-2), var(--sys-bg));
+  border: 1px solid var(--sys-border);
+  border-radius: 14px;
+  box-shadow:
+    var(--sys-glow),
+    0 8px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* 通用区块标题 */
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sys-lilac);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 10px 0 6px;
+  text-shadow: 0 0 8px rgba(181, 108, 255, 0.5);
+}
+
+/* 键值网格 */
+.kv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.kv {
+  background: var(--sys-panel);
+  border: 1px solid rgba(181, 108, 255, 0.25);
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+.kv .k {
+  display: block;
+  color: var(--sys-lilac);
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.kv .v {
+  display: block;
+  color: var(--sys-text);
+  word-break: break-word;
+}
+
+.kv.wide {
+  grid-column: 1 / -1;
+}
+
+/* 空状态 */
+.empty {
+  color: var(--sys-text-dim);
+  text-align: center;
+  padding: 12px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* 徽章 / 标签 */
+.chip {
+  display: inline-block;
+  background: var(--sys-panel-2);
+  border: 1px solid var(--sys-violet);
+  color: var(--sys-lilac);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 11px;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--sys-pink-deep);
+  color: #fff;
+  border-radius: 4px;
+  padding: 0 6px;
+  font-size: 10px;
+  margin-left: 4px;
+  vertical-align: middle;
+}

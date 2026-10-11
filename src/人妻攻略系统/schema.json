@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "地点": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "大区": {
+              "default": "",
+              "type": "string"
+            },
+            "小区": {
+              "default": "",
+              "type": "string"
+            },
+            "所在地": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "当前时间": {
+          "default": "",
+          "type": "string"
+        },
+        "天气": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "天气": {
+              "default": "",
+              "type": "string"
+            },
+            "温度": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "节日": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "仙儿": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "吐槽": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "主角": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "姓名": {
+          "default": "",
+          "type": "string"
+        },
+        "年龄": {
+          "default": 0,
+          "type": "number"
+        },
+        "生日": {
+          "default": "",
+          "type": "string"
+        },
+        "身高": {
+          "default": "",
+          "type": "string"
+        },
+        "肉棒尺寸": {
+          "default": "",
+          "type": "string"
+        },
+        "当前状态": {
+          "default": "",
+          "type": "string"
+        },
+        "天赋": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "人妻": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "年龄": {
+            "$ref": "#/$defs/__schema0"
+          },
+          "身高": {
+            "$ref": "#/$defs/__schema1"
+          },
+          "当前状态": {
+            "$ref": "#/$defs/__schema2"
+          },
+          "生日": {
+            "$ref": "#/$defs/__schema3"
+          },
+          "详细当前面貌": {
+            "$ref": "#/$defs/__schema4"
+          },
+          "详细性格": {
+            "$ref": "#/$defs/__schema5"
+          },
+          "穿着": {
+            "$ref": "#/$defs/__schema6"
+          },
+          "私密": {
+            "$ref": "#/$defs/__schema7"
+          },
+          "怀孕": {
+            "$ref": "#/$defs/__schema8"
+          },
+          "丈夫名字": {
+            "default": "",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "女性朋友": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "年龄": {
+            "$ref": "#/$defs/__schema0"
+          },
+          "身高": {
+            "$ref": "#/$defs/__schema1"
+          },
+          "当前状态": {
+            "$ref": "#/$defs/__schema2"
+          },
+          "生日": {
+            "$ref": "#/$defs/__schema3"
+          },
+          "详细当前面貌": {
+            "$ref": "#/$defs/__schema4"
+          },
+          "详细性格": {
+            "$ref": "#/$defs/__schema5"
+          },
+          "穿着": {
+            "$ref": "#/$defs/__schema6"
+          },
+          "私密": {
+            "$ref": "#/$defs/__schema7"
+          },
+          "怀孕": {
+            "$ref": "#/$defs/__schema8"
+          },
+          "男朋友": {
+            "default": "",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "背包": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "随身物品": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              },
+              "数量": {
+                "default": 1,
+                "type": "number"
+              }
+            }
+          }
+        },
+        "私密战利品": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              },
+              "谁的": {
+                "default": "",
+                "type": "string"
+              },
+              "当前状态": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "女性心声": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "商城": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "点数": {
+          "default": 0,
+          "type": "number"
+        },
+        "道具": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "描述": {
+                "default": "",
+                "type": "string"
+              },
+              "价格": {
+                "default": 0,
+                "type": "number"
+              },
+              "效果": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "任务": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "名称": {
+            "default": "",
+            "type": "string"
+          },
+          "描述": {
+            "default": "",
+            "type": "string"
+          },
+          "点数": {
+            "default": 0,
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "__schema0": {
+      "default": 0,
+      "type": "number"
+    },
+    "__schema1": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema2": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema3": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema4": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema5": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema6": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "衣服": {
+          "default": "",
+          "type": "string"
+        },
+        "内衣": {
+          "default": "",
+          "type": "string"
+        },
+        "裤子": {
+          "default": "",
+          "type": "string"
+        },
+        "内裤": {
+          "default": "",
+          "type": "string"
+        },
+        "袜子": {
+          "default": "",
+          "type": "string"
+        },
+        "鞋子": {
+          "default": "",
+          "type": "string"
+        },
+        "配饰装饰": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "__schema7": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "奶子": {
+          "default": "",
+          "type": "string"
+        },
+        "阴毛": {
+          "default": "",
+          "type": "string"
+        },
+        "小穴": {
+          "default": "",
+          "type": "string"
+        },
+        "肛门": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "__schema8": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "子宫": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "状态": {
+              "default": "",
+              "type": "string"
+            },
+            "标注": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "内射次数": {
+          "default": 0,
+          "type": "number"
+        },
+        "子女血脉": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "姓名": {
+                "default": "",
+                "type": "string"
+              },
+              "年龄": {
+                "default": 0,
+                "type": "number"
+              },
+              "亲生父亲": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
