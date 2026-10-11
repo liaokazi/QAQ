@@ -8,11 +8,16 @@ const 穿着 = {
   配饰装饰: z.string().default(''),
 };
 
+const 私密部位 = {
+  形状: z.string().default(''),
+  当前状态: z.string().default(''),
+};
+
 const 私密 = {
-  奶子: z.string().default(''),
-  阴毛: z.string().default(''),
-  小穴: z.string().default(''),
-  肛门: z.string().default(''),
+  奶子: z.object(私密部位).prefault({}),
+  阴毛: z.object(私密部位).prefault({}),
+  小穴: z.object(私密部位).prefault({}),
+  肛门: z.object(私密部位).prefault({}),
 };
 
 const 怀孕 = {
@@ -186,7 +191,7 @@ export type 女性资料 = {
   详细当前面貌: string;
   详细性格: string;
   穿着: Record<string, string>;
-  私密: Record<string, string>;
+  私密: Record<string, { 形状: string; 当前状态: string }>;
   怀孕: {
     子宫: { 状态: string; 标注: string };
     内射次数: number;

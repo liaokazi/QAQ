@@ -130,7 +130,7 @@
             "$ref": "#/$defs/__schema7"
           },
           "怀孕": {
-            "$ref": "#/$defs/__schema8"
+            "$ref": "#/$defs/__schema10"
           },
           "丈夫名字": {
             "default": "",
@@ -174,7 +174,7 @@
             "$ref": "#/$defs/__schema7"
           },
           "怀孕": {
-            "$ref": "#/$defs/__schema8"
+            "$ref": "#/$defs/__schema10"
           },
           "男朋友": {
             "default": "",
@@ -367,24 +367,64 @@
       "type": "object",
       "properties": {
         "奶子": {
-          "default": "",
-          "type": "string"
+          "default": {},
+          "type": "object",
+          "properties": {
+            "形状": {
+              "$ref": "#/$defs/__schema8"
+            },
+            "当前状态": {
+              "$ref": "#/$defs/__schema9"
+            }
+          }
         },
         "阴毛": {
-          "default": "",
-          "type": "string"
+          "default": {},
+          "type": "object",
+          "properties": {
+            "形状": {
+              "$ref": "#/$defs/__schema8"
+            },
+            "当前状态": {
+              "$ref": "#/$defs/__schema9"
+            }
+          }
         },
         "小穴": {
-          "default": "",
-          "type": "string"
+          "default": {},
+          "type": "object",
+          "properties": {
+            "形状": {
+              "$ref": "#/$defs/__schema8"
+            },
+            "当前状态": {
+              "$ref": "#/$defs/__schema9"
+            }
+          }
         },
         "肛门": {
-          "default": "",
-          "type": "string"
+          "default": {},
+          "type": "object",
+          "properties": {
+            "形状": {
+              "$ref": "#/$defs/__schema8"
+            },
+            "当前状态": {
+              "$ref": "#/$defs/__schema9"
+            }
+          }
         }
       }
     },
     "__schema8": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema9": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema10": {
       "default": {},
       "type": "object",
       "properties": {
