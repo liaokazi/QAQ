@@ -21,12 +21,20 @@
         <span class="k">肉棒</span>
         <span class="v">{{ 主角.肉棒尺寸 || '—' }}</span>
       </div>
-      <div class="kv">
-        <span class="k">天赋</span>
-        <span class="v">
-          <span v-for="t in 主角.天赋" :key="t" class="chip talent-chip">{{ t }}</span>
-          <span v-if="!主角.天赋.length">—</span>
-        </span>
+    </div>
+
+    <div class="talent">
+      <button class="talent-head" type="button" @click="talent_open = !talent_open">
+        <span class="talent-title">✨ 天赋</span>
+        <span class="talent-count">{{ 主角.天赋.length }}</span>
+        <span class="chevron" :class="{ open: talent_open }">▾</span>
+      </button>
+      <div v-show="talent_open" class="talent-body">
+        <div v-if="!主角.天赋.length" class="empty">暂无天赋</div>
+        <div v-for="t in 主角.天赋" :key="t.名称" class="talent-item">
+          <div class="talent-name">{{ t.名称 }}</div>
+          <div class="talent-desc">{{ t.介绍 }}</div>
+        </div>
       </div>
     </div>
 
@@ -46,14 +54,86 @@ import { useDataStore } from '../store';
 
 const store = useDataStore();
 const 主角 = computed(() => store.data.主角);
+const talent_open = ref(false);
 </script>
 
 <style lang="scss" scoped>
-.talent-chip {
-  margin: 1px 2px 1px 0;
+.status-kv {
+  margin-top: 4px;
 }
 
-.status-kv {
-  margin-top: 6px;
+.talent {
+  margin-top: 4px;
+  border: 1px solid rgba(255, 201, 77, 0.35);
+  border-radius: 10px;
+  background: rgba(255, 201, 77, 0.05);
+  overflow: hidden;
+}
+
+.talent-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  background: transparent;
+  border: none;
+  color: var(--sys-gold);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.talent-title {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.talent-count {
+  background: var(--sys-gold);
+  color: #5a3b00;
+  font-size: 11px;
+  padding: 0 8px;
+  border-radius: 999px;
+}
+
+.chevron {
+  color: var(--sys-gold);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.talent-body {
+  padding: 4px 10px 6px;
+  border-top: 1px dashed rgba(255, 201, 77, 0.3);
+}
+
+.talent-item {
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255, 201, 77, 0.15);
+}
+
+.talent-item:last-child {
+  border-bottom: none;
+}
+
+.talent-name {
+  font-weight: 700;
+  color: var(--sys-gold);
+  font-size: 12px;
+}
+
+.talent-desc {
+  color: var(--sys-text-dim);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 1px;
 }
 </style>

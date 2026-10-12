@@ -136,7 +136,16 @@ export const Schema = z.object({
       肉棒尺寸: z.string().default(''),
       当前姿势: z.string().default(''),
       衣着: z.string().default(''),
-      天赋: z.array(z.string()).default([]),
+      天赋: z
+        .array(
+          z
+            .object({
+              名称: z.string().default(''),
+              介绍: z.string().default(''),
+            })
+            .prefault({}),
+        )
+        .default([]),
     })
     .prefault({}),
 

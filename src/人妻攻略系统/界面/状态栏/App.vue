@@ -8,7 +8,7 @@
     <EnvironmentBar />
     <XianErComment />
 
-    <CollapseSection title="主角个人资料" icon="👤" storage_key="protagonist" default_open>
+    <CollapseSection title="主角个人资料" icon="👤" storage_key="protagonist">
       <ProtagonistSection />
     </CollapseSection>
 

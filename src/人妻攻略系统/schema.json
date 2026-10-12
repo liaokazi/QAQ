@@ -116,7 +116,18 @@
           "default": [],
           "type": "array",
           "items": {
-            "type": "string"
+            "default": {},
+            "type": "object",
+            "properties": {
+              "名称": {
+                "default": "",
+                "type": "string"
+              },
+              "介绍": {
+                "default": "",
+                "type": "string"
+              }
+            }
           }
         }
       }

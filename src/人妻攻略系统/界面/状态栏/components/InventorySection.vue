@@ -33,7 +33,7 @@
 import { useDataStore } from '../store';
 
 const store = useDataStore();
-const trophy_open = useLocalStorage('renqi_system:inventory_trophy', false);
+const trophy_open = ref(false);
 const 随身物品为空 = computed(() => _.isEmpty(store.data.背包.随身物品));
 const 女性战利品为空 = computed(() => _.isEmpty(store.data.背包.女性战利品));
 const 女性战利品数量 = computed(() => _.keys(store.data.背包.女性战利品).length);

@@ -24,7 +24,8 @@ const props = withDefaults(
   { icon: '✦', badge: undefined, default_open: false },
 );
 
-const is_open = useLocalStorage(`renqi_system:${props.storage_key}`, props.default_open);
+// 每次加载都默认折叠，不记住上次展开状态
+const is_open = ref(!!props.default_open);
 const toggle = () => (is_open.value = !is_open.value);
 </script>
 
