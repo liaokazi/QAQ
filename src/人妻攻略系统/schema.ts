@@ -130,7 +130,7 @@ export const Schema = z.object({
             .prefault({}),
         )
         .default({}),
-      私密战利品: z
+      女性战利品: z
         .record(
           z.string(),
           z

@@ -208,7 +208,7 @@
             }
           }
         },
-        "私密战利品": {
+        "女性战利品": {
           "default": {},
           "type": "object",
           "propertyNames": {

@@ -20,11 +20,11 @@
       <FemaleSection kind="女性朋友" />
     </CollapseSection>
 
-    <CollapseSection title="背包栏位" icon="🎒" storage_key="inventory">
+    <CollapseSection title="背包栏位" icon="🎒" storage_key="inventory" :badge="背包数量">
       <InventorySection />
     </CollapseSection>
 
-    <CollapseSection title="女性心声" icon="💭" storage_key="inner_thoughts">
+    <CollapseSection title="女性心声" icon="💭" storage_key="inner_thoughts" :badge="女性心声数量">
       <InnerThoughtsSection />
     </CollapseSection>
 
@@ -54,6 +54,10 @@ const store = useDataStore();
 
 const 人妻数量 = computed(() => _.keys(store.data.人妻).length);
 const 女性朋友数量 = computed(() => _.keys(store.data.女性朋友).length);
+const 背包数量 = computed(
+  () => _.keys(store.data.背包.随身物品).length + _.keys(store.data.背包.女性战利品).length,
+);
+const 女性心声数量 = computed(() => _.keys(store.data.女性心声).length);
 </script>
 
 <style lang="scss" scoped>

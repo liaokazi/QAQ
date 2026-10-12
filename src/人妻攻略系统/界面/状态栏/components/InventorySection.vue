@@ -10,15 +10,19 @@
 
     <div class="trophy">
       <button class="trophy-head" type="button" @click="trophy_open = !trophy_open">
-        <span>💋 私密战利品</span>
+        <span>💋 女性战利品</span>
+        <span class="trophy-count">{{ _.keys(store.data.背包.女性战利品).length }}</span>
         <span class="chevron" :class="{ open: trophy_open }">▾</span>
       </button>
       <div v-show="trophy_open" class="trophy-body">
-        <div v-if="_.isEmpty(store.data.背包.私密战利品)" class="empty">暂无战利品</div>
-        <div v-for="(t, name) in store.data.背包.私密战利品" :key="name" class="trophy-row">
-          <span class="trophy-name">{{ name }}</span>
+        <div v-if="_.isEmpty(store.data.背包.女性战利品)" class="empty">暂无战利品，去收集女性的内衣内裤吧</div>
+        <div v-for="(t, name) in store.data.背包.女性战利品" :key="name" class="trophy-row">
+          <div class="trophy-name">🎀 {{ name }}</div>
           <div class="trophy-desc">{{ t.描述 }}</div>
-          <div class="trophy-meta">来自：{{ t.谁的 }} · 状态：{{ t.当前状态 }}</div>
+          <div class="trophy-meta">
+            <div class="meta-line">👤 原主人：{{ t.谁的 || '未知' }}</div>
+            <div class="meta-line">💦 当前状态：{{ t.当前状态 || '—' }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -96,6 +100,14 @@ const trophy_open = useLocalStorage('renqi_system:inventory_trophy', false);
   text-align: left;
 }
 
+.trophy-count {
+  background: var(--sys-pink-deep);
+  color: #fff;
+  font-size: 11px;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+
 .chevron {
   color: var(--sys-pink);
   transition: transform 0.2s;
@@ -135,6 +147,10 @@ const trophy_open = useLocalStorage('renqi_system:inventory_trophy', false);
 .trophy-meta {
   color: var(--sys-text-dim);
   font-size: 11px;
-  margin-top: 2px;
+  margin-top: 4px;
+}
+
+.meta-line {
+  line-height: 1.7;
 }
 </style>
