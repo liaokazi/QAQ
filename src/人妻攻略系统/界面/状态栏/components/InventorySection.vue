@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="sec-title">🎒 随身物品</div>
-    <div v-if="_.isEmpty(store.data.背包.随身物品)" class="empty">背包空空如也</div>
+    <div v-if="随身物品为空" class="empty">背包空空如也</div>
     <div v-for="(item, name) in store.data.背包.随身物品" :key="name" class="item-row">
       <span class="item-name">{{ name }}</span>
       <span class="item-desc">{{ item.描述 }}</span>
@@ -11,11 +11,11 @@
     <div class="trophy">
       <button class="trophy-head" type="button" @click="trophy_open = !trophy_open">
         <span>💋 女性战利品</span>
-        <span class="trophy-count">{{ _.keys(store.data.背包.女性战利品).length }}</span>
+        <span class="trophy-count">{{ 女性战利品数量 }}</span>
         <span class="chevron" :class="{ open: trophy_open }">▾</span>
       </button>
       <div v-show="trophy_open" class="trophy-body">
-        <div v-if="_.isEmpty(store.data.背包.女性战利品)" class="empty">暂无战利品，去收集女性的内衣内裤吧</div>
+        <div v-if="女性战利品为空" class="empty">暂无战利品，去收集女性的内衣内裤吧</div>
         <div v-for="(t, name) in store.data.背包.女性战利品" :key="name" class="trophy-row">
           <div class="trophy-name">🎀 {{ name }}</div>
           <div class="trophy-desc">{{ t.描述 }}</div>
@@ -34,6 +34,9 @@ import { useDataStore } from '../store';
 
 const store = useDataStore();
 const trophy_open = useLocalStorage('renqi_system:inventory_trophy', false);
+const 随身物品为空 = computed(() => _.isEmpty(store.data.背包.随身物品));
+const 女性战利品为空 = computed(() => _.isEmpty(store.data.背包.女性战利品));
+const 女性战利品数量 = computed(() => _.keys(store.data.背包.女性战利品).length);
 </script>
 
 <style lang="scss" scoped>

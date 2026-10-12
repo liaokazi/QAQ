@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="_.isEmpty(store.data.女性心声)" class="empty">尚未窃听到任何心声</div>
+    <div v-if="isEmpty" class="empty">尚未窃听到任何心声</div>
     <div v-for="(thought, name) in store.data.女性心声" :key="name" class="thought-row">
       <span class="thought-name">💭 {{ name }}</span>
       <div class="thought-text">「{{ thought }}」</div>
@@ -12,6 +12,7 @@
 import { useDataStore } from '../store';
 
 const store = useDataStore();
+const isEmpty = computed(() => _.isEmpty(store.data.女性心声));
 </script>
 
 <style lang="scss" scoped>

@@ -6,7 +6,7 @@
     </div>
 
     <div class="sec-title">🧪 商城道具</div>
-    <div v-if="_.isEmpty(store.data.商城.道具)" class="empty">商城暂未上架道具</div>
+    <div v-if="道具为空" class="empty">商城暂未上架道具</div>
     <div v-for="(item, name) in store.data.商城.道具" :key="name" class="shop-row">
       <div class="shop-head">
         <span class="shop-name">{{ name }}</span>
@@ -22,6 +22,7 @@
 import { useDataStore } from '../store';
 
 const store = useDataStore();
+const 道具为空 = computed(() => _.isEmpty(store.data.商城.道具));
 </script>
 
 <style lang="scss" scoped>

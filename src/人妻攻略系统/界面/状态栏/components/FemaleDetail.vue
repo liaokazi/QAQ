@@ -24,6 +24,11 @@
       <span class="status-value">{{ woman.当前状态 || '—' }}</span>
     </div>
 
+    <div class="status-banner">
+      <span class="status-label">🧎 当前姿势</span>
+      <span class="status-value">{{ woman.当前姿势 || '—' }}</span>
+    </div>
+
     <div class="sec-title">👗 穿着</div>
     <div class="kv-grid">
       <div v-for="(val, slot) in woman.穿着" :key="slot" class="kv">
@@ -56,6 +61,48 @@
           <span v-if="woman.怀孕.子宫.标注" class="tag">{{ woman.怀孕.子宫.标注 }}</span>
         </span>
       </div>
+      <div class="kv wide">
+        <span class="k">生理周期</span>
+        <span class="v">
+          {{ woman.怀孕.生理周期.周期 || '—' }}
+          <span v-if="woman.怀孕.生理周期.说明" class="cycle-note">（{{ woman.怀孕.生理周期.说明 }}）</span>
+        </span>
+      </div>
+      <div class="kv">
+        <span class="k">孕周</span>
+        <span class="v">{{ woman.怀孕.怀孕状态.孕周 > 0 ? `${woman.怀孕.怀孕状态.孕周} 周` : '未孕' }}</span>
+      </div>
+      <div class="kv">
+        <span class="k">胎儿健康</span>
+        <span class="v">{{ woman.怀孕.怀孕状态.胎儿健康 || '—' }}</span>
+      </div>
+      <div class="kv">
+        <span class="k">生父</span>
+        <span class="v">{{ woman.怀孕.怀孕状态.生父 || '—' }}</span>
+      </div>
+      <div class="kv wide">
+        <span class="k">产后恢复</span>
+        <span class="v">泌乳：{{ woman.怀孕.产后恢复.泌乳 || '—' }}｜产道：{{ woman.怀孕.产后恢复.产道恢复度 || '—' }}</span>
+      </div>
+      <div class="kv wide">
+        <span class="k">精液残留</span>
+        <span v-if="woman.怀孕.精液残留.最近内射者 && woman.怀孕.精液残留.最近内射者 !== '无'" class="v">
+          {{ woman.怀孕.精液残留.最近内射者 }}（{{ woman.怀孕.精液残留.距上次内射时间 || '—' }}）· {{ woman.怀孕.精液残留.残留位置 || '—' }} · {{ woman.怀孕.精液残留.残留量 || '—' }}
+        </span>
+        <span v-else class="v">无残留</span>
+      </div>
+      <div class="kv wide">
+        <span class="k">{{ 愧疚Label }}</span>
+        <span class="v">{{ woman.怀孕.NTR心理.对丈夫的愧疚 || '—' }}</span>
+      </div>
+      <div class="kv wide">
+        <span class="k">对主角的沉沦</span>
+        <span class="v">{{ woman.怀孕.NTR心理.对主角的沉沦 || '—' }}</span>
+      </div>
+      <div class="kv wide">
+        <span class="k">内心挣扎</span>
+        <span class="v">{{ woman.怀孕.NTR心理.内心挣扎 || '—' }}</span>
+      </div>
       <div class="kv">
         <span class="k">内射次数</span>
         <span class="v">{{ woman.怀孕.内射次数 }} 次</span>
@@ -84,6 +131,7 @@ const props = defineProps<{
 
 const partnerLabel = computed(() => (props.kind === '人妻' ? '丈夫' : '男朋友'));
 const partnerValue = computed(() => (props.kind === '人妻' ? props.woman.丈夫名字 : props.woman.男朋友));
+const 愧疚Label = computed(() => (props.kind === '人妻' ? '对丈夫的愧疚' : '对男友的愧疚'));
 </script>
 
 <style lang="scss" scoped>
@@ -155,5 +203,10 @@ const partnerValue = computed(() => (props.kind === '人妻' ? props.woman.丈�
 .child-chip {
   margin: 1px 2px 1px 0;
   line-height: 1.8;
+}
+
+.cycle-note {
+  color: var(--sys-text-dim);
+  font-size: 11px;
 }
 </style>

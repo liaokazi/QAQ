@@ -27,6 +27,40 @@ const 怀孕 = {
       标注: z.string().default(''),
     })
     .prefault({}),
+  生理周期: z
+    .object({
+      周期: z.string().default(''), // 危险期 / 安全期 / 排卵期 / 月经期
+      说明: z.string().default(''), // 周期细节，如「月经刚结束第三天，距排卵还有约五天」
+    })
+    .prefault({}),
+  怀孕状态: z
+    .object({
+      孕周: z.coerce.number().default(0), // 未怀孕为 0
+      胎儿健康: z.string().default(''),
+      生父: z.string().default(''), // 未怀孕填「无」
+    })
+    .prefault({}),
+  产后恢复: z
+    .object({
+      泌乳: z.string().default(''), // 乳房是否泌乳、奶水量
+      产道恢复度: z.string().default(''), // 产后产道恢复程度
+    })
+    .prefault({}),
+  精液残留: z
+    .object({
+      最近内射者: z.string().default(''),
+      残留位置: z.string().default(''), // 子宫内 / 阴道内 / 体外等
+      残留量: z.string().default(''),
+      距上次内射时间: z.string().default(''),
+    })
+    .prefault({}),
+  NTR心理: z
+    .object({
+      对丈夫的愧疚: z.string().default(''),
+      对主角的沉沦: z.string().default(''),
+      内心挣扎: z.string().default(''),
+    })
+    .prefault({}),
   内射次数: z.coerce.number().default(0),
   子女血脉: z
     .array(
@@ -46,6 +80,7 @@ const 女性基础 = {
   年龄: z.coerce.number().default(0),
   身高: z.string().default(''),
   当前状态: z.string().default(''),
+  当前姿势: z.string().default(''),
   生日: z.string().default(''),
   详细当前面貌: z.string().default(''),
   详细性格: z.string().default(''),
@@ -185,6 +220,7 @@ export type 女性资料 = {
   年龄: number;
   身高: string;
   当前状态: string;
+  当前姿势: string;
   生日: string;
   丈夫名字?: string;
   男朋友?: string;
@@ -194,6 +230,11 @@ export type 女性资料 = {
   私密: Record<string, { 形状: string; 当前状态: string }>;
   怀孕: {
     子宫: { 状态: string; 标注: string };
+    生理周期: { 周期: string; 说明: string };
+    怀孕状态: { 孕周: number; 胎儿健康: string; 生父: string };
+    产后恢复: { 泌乳: string; 产道恢复度: string };
+    精液残留: { 最近内射者: string; 残留位置: string; 残留量: string; 距上次内射时间: string };
+    NTR心理: { 对丈夫的愧疚: string; 对主角的沉沦: string; 内心挣扎: string };
     内射次数: number;
     子女血脉: { 姓名: string; 年龄: number; 亲生父亲: string }[];
   };

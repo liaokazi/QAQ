@@ -114,23 +114,26 @@
           "当前状态": {
             "$ref": "#/$defs/__schema2"
           },
-          "生日": {
+          "当前姿势": {
             "$ref": "#/$defs/__schema3"
           },
-          "详细当前面貌": {
+          "生日": {
             "$ref": "#/$defs/__schema4"
           },
-          "详细性格": {
+          "详细当前面貌": {
             "$ref": "#/$defs/__schema5"
           },
-          "穿着": {
+          "详细性格": {
             "$ref": "#/$defs/__schema6"
           },
-          "私密": {
+          "穿着": {
             "$ref": "#/$defs/__schema7"
           },
+          "私密": {
+            "$ref": "#/$defs/__schema8"
+          },
           "怀孕": {
-            "$ref": "#/$defs/__schema10"
+            "$ref": "#/$defs/__schema11"
           },
           "丈夫名字": {
             "default": "",
@@ -158,23 +161,26 @@
           "当前状态": {
             "$ref": "#/$defs/__schema2"
           },
-          "生日": {
+          "当前姿势": {
             "$ref": "#/$defs/__schema3"
           },
-          "详细当前面貌": {
+          "生日": {
             "$ref": "#/$defs/__schema4"
           },
-          "详细性格": {
+          "详细当前面貌": {
             "$ref": "#/$defs/__schema5"
           },
-          "穿着": {
+          "详细性格": {
             "$ref": "#/$defs/__schema6"
           },
-          "私密": {
+          "穿着": {
             "$ref": "#/$defs/__schema7"
           },
+          "私密": {
+            "$ref": "#/$defs/__schema8"
+          },
           "怀孕": {
-            "$ref": "#/$defs/__schema10"
+            "$ref": "#/$defs/__schema11"
           },
           "男朋友": {
             "default": "",
@@ -329,6 +335,10 @@
       "type": "string"
     },
     "__schema6": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema7": {
       "default": {},
       "type": "object",
       "properties": {
@@ -362,7 +372,7 @@
         }
       }
     },
-    "__schema7": {
+    "__schema8": {
       "default": {},
       "type": "object",
       "properties": {
@@ -371,10 +381,10 @@
           "type": "object",
           "properties": {
             "形状": {
-              "$ref": "#/$defs/__schema8"
+              "$ref": "#/$defs/__schema9"
             },
             "当前状态": {
-              "$ref": "#/$defs/__schema9"
+              "$ref": "#/$defs/__schema10"
             }
           }
         },
@@ -383,10 +393,10 @@
           "type": "object",
           "properties": {
             "形状": {
-              "$ref": "#/$defs/__schema8"
+              "$ref": "#/$defs/__schema9"
             },
             "当前状态": {
-              "$ref": "#/$defs/__schema9"
+              "$ref": "#/$defs/__schema10"
             }
           }
         },
@@ -395,10 +405,10 @@
           "type": "object",
           "properties": {
             "形状": {
-              "$ref": "#/$defs/__schema8"
+              "$ref": "#/$defs/__schema9"
             },
             "当前状态": {
-              "$ref": "#/$defs/__schema9"
+              "$ref": "#/$defs/__schema10"
             }
           }
         },
@@ -407,24 +417,24 @@
           "type": "object",
           "properties": {
             "形状": {
-              "$ref": "#/$defs/__schema8"
+              "$ref": "#/$defs/__schema9"
             },
             "当前状态": {
-              "$ref": "#/$defs/__schema9"
+              "$ref": "#/$defs/__schema10"
             }
           }
         }
       }
-    },
-    "__schema8": {
-      "default": "",
-      "type": "string"
     },
     "__schema9": {
       "default": "",
       "type": "string"
     },
     "__schema10": {
+      "default": "",
+      "type": "string"
+    },
+    "__schema11": {
       "default": {},
       "type": "object",
       "properties": {
@@ -437,6 +447,92 @@
               "type": "string"
             },
             "标注": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "生理周期": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "周期": {
+              "default": "",
+              "type": "string"
+            },
+            "说明": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "怀孕状态": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "孕周": {
+              "default": 0,
+              "type": "number"
+            },
+            "胎儿健康": {
+              "default": "",
+              "type": "string"
+            },
+            "生父": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "产后恢复": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "泌乳": {
+              "default": "",
+              "type": "string"
+            },
+            "产道恢复度": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "精液残留": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "最近内射者": {
+              "default": "",
+              "type": "string"
+            },
+            "残留位置": {
+              "default": "",
+              "type": "string"
+            },
+            "残留量": {
+              "default": "",
+              "type": "string"
+            },
+            "距上次内射时间": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "NTR心理": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "对丈夫的愧疚": {
+              "default": "",
+              "type": "string"
+            },
+            "对主角的沉沦": {
+              "default": "",
+              "type": "string"
+            },
+            "内心挣扎": {
               "default": "",
               "type": "string"
             }
