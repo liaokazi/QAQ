@@ -25,8 +25,14 @@
     </div>
 
     <div v-if="节日列表.length" class="env-festival">
-      <span class="env-emoji">🎉</span>
-      <span v-for="f in 节日列表" :key="f" class="festival-chip">{{ f }}</span>
+      <div v-for="f in 节日列表" :key="f.日期" class="festival-item">
+        <div class="festival-head">
+          <span class="festival-name">🎉 {{ f.名称 }}</span>
+          <span class="festival-date">{{ f.日期 }}</span>
+        </div>
+        <div class="festival-desc">{{ f.简介 }}</div>
+        <div class="festival-off">🛋 {{ f.放假天数 }}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -62,44 +68,13 @@ const 星期 = computed(() => {
   return `星期${names[d.getDay()]}`;
 });
 
-// 固定日期的阳历节日（农历节日由 AI 写入 世界.节日）
-const 阳历节日: Record<string, string> = {
-  '1/1': '元旦',
-  '2/14': '情人节',
-  '3/8': '妇女节',
-  '3/14': '白色情人节',
-  '4/1': '愚人节',
-  '5/1': '劳动节',
-  '5/20': '520情人节',
-  '6/1': '儿童节',
-  '9/10': '教师节',
-  '10/1': '国庆节',
-  '10/31': '万圣节',
-  '11/11': '光棍节',
-  '12/24': '平安夜',
-  '12/25': '圣诞节',
-  '12/31': '跨年夜',
-};
-
-const 节日列表 = computed(() => {
-  const list: string[] = [];
-  const m = store.data.世界.当前时间.match(/(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/);
-  if (m) {
-    const md = `${Number(m[2])}/${Number(m[3])}`;
-    if (阳历节日[md]) {
-      list.push(阳历节日[md]);
-    }
-  }
-  if (store.data.世界.节日) {
-    list.push(store.data.世界.节日);
-  }
-  return list;
-});
+// 节假日由 AI 维护（世界.节假日），这里只显示最近的 2 个
+const 节日列表 = computed(() => (store.data.世界.节假日 || []).slice(0, 2));
 </script>
 
 <style lang="scss" scoped>
 .env-bar {
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: linear-gradient(135deg, rgba(255, 95, 162, 0.16), rgba(181, 108, 255, 0.12));
   border-bottom: 1px solid var(--sys-border);
 }
@@ -110,7 +85,7 @@ const 节日列表 = computed(() => {
   gap: 6px;
   font-weight: 700;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: var(--sys-text);
   text-shadow: 0 0 8px rgba(255, 95, 162, 0.5);
 }
@@ -152,20 +127,49 @@ const 节日列表 = computed(() => {
 
 .env-festival {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
 }
 
-.festival-chip {
-  background: var(--sys-gold);
-  color: #5a3b00;
+.festival-item {
+  background: rgba(255, 201, 77, 0.08);
+  border: 1px solid rgba(255, 201, 77, 0.35);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.festival-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.festival-name {
+  color: var(--sys-gold);
   font-weight: 700;
+  font-size: 12px;
+  text-shadow: 0 0 8px rgba(255, 201, 77, 0.5);
+}
+
+.festival-date {
+  color: var(--sys-text-dim);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.festival-desc {
+  color: var(--sys-text);
   font-size: 11px;
-  border-radius: 999px;
-  padding: 1px 10px;
-  box-shadow: 0 0 8px rgba(255, 201, 77, 0.5);
+  line-height: 1.5;
+  margin-top: 1px;
+}
+
+.festival-off {
+  color: var(--sys-green);
+  font-size: 10px;
+  margin-top: 1px;
 }
 
 @media (max-width: 460px) {

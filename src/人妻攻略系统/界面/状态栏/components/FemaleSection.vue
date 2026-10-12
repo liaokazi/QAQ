@@ -6,7 +6,6 @@
       <button class="woman-row" type="button" @click="toggle(name)">
         <span class="woman-name">{{ name }}</span>
         <span class="woman-meta">{{ woman.年龄 ? `${woman.年龄}岁` : '' }} {{ woman.身高 }}</span>
-        <span class="woman-state">{{ woman.当前状态 || '未知' }}</span>
         <span class="chevron" :class="{ open: isOpen(name) }">▾</span>
       </button>
 
@@ -47,7 +46,7 @@ function toggle(name: string) {
 .female-section {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .woman-card {
@@ -85,17 +84,9 @@ function toggle(name: string) {
 }
 
 .woman-meta {
+  flex: 1;
   color: var(--sys-lilac);
   font-size: 12px;
-  white-space: nowrap;
-}
-
-.woman-state {
-  flex: 1;
-  color: var(--sys-text-dim);
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -110,7 +101,7 @@ function toggle(name: string) {
 }
 
 .woman-detail {
-  padding: 0 10px 10px;
+  padding: 0 8px 8px;
   border-top: 1px dashed rgba(181, 108, 255, 0.3);
 }
 </style>

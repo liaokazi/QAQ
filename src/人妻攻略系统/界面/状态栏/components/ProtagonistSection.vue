@@ -17,8 +17,8 @@
         <span class="k">身高</span>
         <span class="v">{{ 主角.身高 || '—' }}</span>
       </div>
-      <div class="kv">
-        <span class="k">肉棒尺寸</span>
+      <div class="kv wide">
+        <span class="k">肉棒</span>
         <span class="v">{{ 主角.肉棒尺寸 || '—' }}</span>
       </div>
       <div class="kv">
@@ -31,8 +31,12 @@
     </div>
 
     <div class="kv wide status-kv">
-      <span class="k">当前状态</span>
-      <span class="v">{{ 主角.当前状态 || '—' }}</span>
+      <span class="k">当前姿势</span>
+      <span class="v">{{ 主角.当前姿势 || '—' }}</span>
+    </div>
+    <div class="kv wide status-kv">
+      <span class="k">衣着</span>
+      <span class="v">{{ 主角.衣着 || '—' }}</span>
     </div>
   </div>
 </template>

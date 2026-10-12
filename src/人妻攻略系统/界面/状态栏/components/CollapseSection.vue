@@ -83,7 +83,7 @@ const toggle = () => (is_open.value = !is_open.value);
 }
 
 .collapse-body {
-  padding: 12px 14px;
+  padding: 8px 10px;
   background: rgba(20, 6, 26, 0.4);
   animation: fade-in 0.25s ease;
 }

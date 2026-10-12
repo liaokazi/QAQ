@@ -42,9 +42,31 @@
             }
           }
         },
-        "节日": {
-          "default": "",
-          "type": "string"
+        "节假日": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "名称": {
+                "default": "",
+                "type": "string"
+              },
+              "日期": {
+                "default": "",
+                "type": "string"
+              },
+              "简介": {
+                "default": "",
+                "type": "string"
+              },
+              "放假天数": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
         }
       }
     },
@@ -82,7 +104,11 @@
           "default": "",
           "type": "string"
         },
-        "当前状态": {
+        "当前姿势": {
+          "default": "",
+          "type": "string"
+        },
+        "衣着": {
           "default": "",
           "type": "string"
         },

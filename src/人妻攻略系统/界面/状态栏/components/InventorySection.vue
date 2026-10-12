@@ -48,7 +48,7 @@ const 女性战利品数量 = computed(() => _.keys(store.data.背包.女性战�
   border: 1px solid rgba(181, 108, 255, 0.25);
   border-radius: 8px;
   padding: 6px 8px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .item-name {
@@ -77,7 +77,7 @@ const 女性战利品数量 = computed(() => _.keys(store.data.背包.女性战�
 }
 
 .trophy {
-  margin-top: 8px;
+  margin-top: 6px;
   border: 1px solid rgba(255, 45, 120, 0.35);
   border-radius: 10px;
   background: rgba(255, 45, 120, 0.05);

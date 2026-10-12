@@ -106,7 +106,18 @@ export const Schema = z.object({
           温度: z.string().default(''),
         })
         .prefault({}),
-      节日: z.string().default(''),
+      节假日: z
+        .array(
+          z
+            .object({
+              名称: z.string().default(''),
+              日期: z.string().default(''),
+              简介: z.string().default(''),
+              放假天数: z.string().default(''),
+            })
+            .prefault({}),
+        )
+        .default([]),
     })
     .prefault({}),
 
@@ -123,7 +134,8 @@ export const Schema = z.object({
       生日: z.string().default(''),
       身高: z.string().default(''),
       肉棒尺寸: z.string().default(''),
-      当前状态: z.string().default(''),
+      当前姿势: z.string().default(''),
+      衣着: z.string().default(''),
       天赋: z.array(z.string()).default([]),
     })
     .prefault({}),

@@ -57,7 +57,7 @@ body {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 1px;
-  margin: 10px 0 6px;
+  margin: 6px 0 3px;
   text-shadow: 0 0 8px rgba(181, 108, 255, 0.5);
 }
 
@@ -65,14 +65,14 @@ body {
 .kv-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  gap: 4px;
 }
 
 .kv {
   background: var(--sys-panel);
   border: 1px solid rgba(181, 108, 255, 0.25);
   border-radius: 8px;
-  padding: 6px 8px;
+  padding: 5px 7px;
   min-width: 0;
 }
 
@@ -97,7 +97,7 @@ body {
 .empty {
   color: var(--sys-text-dim);
   text-align: center;
-  padding: 12px;
+  padding: 8px;
   font-style: italic;
   font-size: 12px;
 }

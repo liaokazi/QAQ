@@ -52,8 +52,14 @@
       </div>
     </div>
 
-    <div class="sec-title">🤰 怀孕系统</div>
-    <div class="kv-grid">
+    <div class="preg">
+      <button class="preg-head" type="button" @click="preg_open = !preg_open">
+        <span class="preg-title">🤰 怀孕系统</span>
+        <span class="preg-summary">{{ 怀孕摘要 }}</span>
+        <span class="chevron" :class="{ open: preg_open }">▾</span>
+      </button>
+      <div v-show="preg_open" class="preg-body">
+        <div class="kv-grid">
       <div class="kv wide">
         <span class="k">子宫</span>
         <span class="v">
@@ -116,6 +122,8 @@
           <span v-if="!woman.怀孕.子女血脉.length">暂无子女</span>
         </span>
       </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -132,19 +140,26 @@ const props = defineProps<{
 const partnerLabel = computed(() => (props.kind === '人妻' ? '丈夫' : '男朋友'));
 const partnerValue = computed(() => (props.kind === '人妻' ? props.woman.丈夫名字 : props.woman.男朋友));
 const 愧疚Label = computed(() => (props.kind === '人妻' ? '对丈夫的愧疚' : '对男友的愧疚'));
+
+const preg_open = ref(false);
+const 怀孕摘要 = computed(() => {
+  const p = props.woman.怀孕;
+  const 孕周 = p.怀孕状态.孕周 > 0 ? `孕${p.怀孕状态.孕周}周` : '未孕';
+  return `${p.子宫.标注 || '—'} · ${孕周} · 内射${p.内射次数}次`;
+});
 </script>
 
 <style lang="scss" scoped>
 .detail {
-  padding-top: 10px;
+  padding-top: 6px;
 }
 
 .status-banner {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  margin-top: 8px;
-  padding: 8px 10px;
+  margin-top: 6px;
+  padding: 6px 8px;
   background: linear-gradient(90deg, rgba(255, 45, 120, 0.18), rgba(181, 108, 255, 0.12));
   border: 1px solid rgba(255, 95, 162, 0.45);
   border-radius: 8px;
@@ -165,14 +180,14 @@ const 愧疚Label = computed(() => (props.kind === '人妻' ? '对丈夫的愧�
 .private-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .private-card {
   background: rgba(255, 45, 120, 0.06);
   border: 1px solid rgba(255, 95, 162, 0.25);
   border-radius: 8px;
-  padding: 6px 8px;
+  padding: 5px 7px;
 }
 
 .private-name {
@@ -208,5 +223,60 @@ const 愧疚Label = computed(() => (props.kind === '人妻' ? '对丈夫的愧�
 .cycle-note {
   color: var(--sys-text-dim);
   font-size: 11px;
+}
+
+.preg {
+  margin-top: 6px;
+  border: 1px solid rgba(181, 108, 255, 0.35);
+  border-radius: 10px;
+  background: rgba(181, 108, 255, 0.05);
+  overflow: hidden;
+}
+
+.preg-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  color: var(--sys-lilac);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.preg-title {
+  white-space: nowrap;
+}
+
+.preg-summary {
+  flex: 1;
+  color: var(--sys-text-dim);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevron {
+  color: var(--sys-lilac);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.preg-body {
+  padding: 6px 10px 8px;
+  border-top: 1px dashed rgba(181, 108, 255, 0.3);
 }
 </style>
