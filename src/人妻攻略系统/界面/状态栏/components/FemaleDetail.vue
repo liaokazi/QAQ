@@ -40,7 +40,9 @@
     <div class="sec-title">💕 私密</div>
     <div class="private-list">
       <div v-for="(part, partName) in woman.私密" :key="partName" class="private-card">
-        <div class="private-name">{{ partName }}</div>
+        <div class="private-name">
+          <span class="part-dot" :style="{ background: 部位色[partName] || '#ff5fa2' }"></span>{{ partName }}
+        </div>
         <div class="private-row">
           <span class="private-k">形状</span>
           <span class="private-v">{{ part.形状 || '—' }}</span>
@@ -140,6 +142,7 @@ const props = defineProps<{
 const partnerLabel = computed(() => (props.kind === '人妻' ? '丈夫' : '男朋友'));
 const partnerValue = computed(() => (props.kind === '人妻' ? props.woman.丈夫名字 : props.woman.男朋友));
 const 愧疚Label = computed(() => (props.kind === '人妻' ? '对丈夫的愧疚' : '对男友的愧疚'));
+const 部位色: Record<string, string> = { 奶子: '#ff5fa2', 阴毛: '#5fd7a0', 小穴: '#ff2d78', 肛门: '#b56cff' };
 
 const preg_open = ref(false);
 const 怀孕摘要 = computed(() => {
@@ -152,29 +155,6 @@ const 怀孕摘要 = computed(() => {
 <style lang="scss" scoped>
 .detail {
   padding-top: 6px;
-}
-
-.status-banner {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-top: 6px;
-  padding: 6px 8px;
-  background: linear-gradient(90deg, rgba(255, 45, 120, 0.18), rgba(181, 108, 255, 0.12));
-  border: 1px solid rgba(255, 95, 162, 0.45);
-  border-radius: 8px;
-}
-
-.status-label {
-  font-weight: 700;
-  color: var(--sys-pink);
-  white-space: nowrap;
-}
-
-.status-value {
-  color: var(--sys-text);
-  font-size: 12px;
-  word-break: break-word;
 }
 
 .private-list {
@@ -191,16 +171,27 @@ const 怀孕摘要 = computed(() => {
 }
 
 .private-name {
+  display: flex;
+  align-items: center;
   font-weight: 700;
   color: var(--sys-pink);
-  font-size: 12px;
-  margin-bottom: 4px;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.part-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
 }
 
 .private-row {
   display: flex;
   gap: 8px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -222,7 +213,7 @@ const 怀孕摘要 = computed(() => {
 
 .cycle-note {
   color: var(--sys-text-dim);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .preg {

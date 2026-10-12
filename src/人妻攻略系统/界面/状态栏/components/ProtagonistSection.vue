@@ -38,11 +38,11 @@
       </div>
     </div>
 
-    <div class="kv wide status-kv">
-      <span class="k">当前姿势</span>
-      <span class="v">{{ 主角.当前姿势 || '—' }}</span>
+    <div class="status-banner">
+      <span class="status-label">🧎 当前姿势</span>
+      <span class="status-value">{{ 主角.当前姿势 || '—' }}</span>
     </div>
-    <div class="kv wide status-kv">
+    <div class="kv">
       <span class="k">衣着</span>
       <span class="v">{{ 主角.衣着 || '—' }}</span>
     </div>
@@ -58,10 +58,6 @@ const talent_open = ref(false);
 </script>
 
 <style lang="scss" scoped>
-.status-kv {
-  margin-top: 4px;
-}
-
 .talent {
   margin-top: 4px;
   border: 1px solid rgba(255, 201, 77, 0.35);

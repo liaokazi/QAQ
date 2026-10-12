@@ -1,9 +1,12 @@
 <template>
   <section class="collapse-section">
-    <button class="collapse-header" type="button" @click="toggle">
+    <button class="collapse-header" :class="{ open: is_open }" type="button" @click="toggle">
+      <span v-if="index" class="collapse-index">{{ index }}</span>
       <span class="collapse-icon">{{ icon }}</span>
       <span class="collapse-title">{{ title }}</span>
-      <span v-if="badge !== undefined" class="collapse-badge">{{ badge }}</span>
+      <span v-if="badge !== undefined" class="collapse-badge" :class="badge_color ? `badge-${badge_color}` : ''">{{
+        badge
+      }}</span>
       <span class="collapse-chevron" :class="{ open: is_open }">▾</span>
     </button>
     <div v-show="is_open" class="collapse-body">
@@ -20,8 +23,10 @@ const props = withDefaults(
     badge?: string | number;
     storage_key: string;
     default_open?: boolean;
+    index?: string;
+    badge_color?: 'pink' | 'violet' | 'gold' | 'green';
   }>(),
-  { icon: '✦', badge: undefined, default_open: false },
+  { icon: '✦', badge: undefined, default_open: false, index: undefined, badge_color: undefined },
 );
 
 // 每次加载都默认折叠，不记住上次展开状态
@@ -55,6 +60,18 @@ const toggle = () => (is_open.value = !is_open.value);
   background: linear-gradient(90deg, rgba(255, 45, 120, 0.28), rgba(181, 108, 255, 0.16));
 }
 
+.collapse-header.open {
+  background: linear-gradient(90deg, rgba(255, 45, 120, 0.32), rgba(181, 108, 255, 0.2));
+}
+
+.collapse-index {
+  color: var(--sys-pink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
 .collapse-icon {
   font-size: 15px;
 }
@@ -66,12 +83,33 @@ const toggle = () => (is_open.value = !is_open.value);
 }
 
 .collapse-badge {
-  background: var(--sys-pink-deep);
   color: #fff;
   font-size: 11px;
   padding: 1px 8px;
   border-radius: 999px;
   white-space: nowrap;
+}
+
+/* 徽章配色发光 */
+.badge-pink {
+  background: var(--sys-pink-deep);
+  box-shadow: 0 0 8px rgba(255, 45, 120, 0.7);
+}
+
+.badge-violet {
+  background: var(--sys-violet);
+  box-shadow: 0 0 8px rgba(181, 108, 255, 0.7);
+}
+
+.badge-gold {
+  background: #b8860b;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(255, 201, 77, 0.7);
+}
+
+.badge-green {
+  background: #1e9e63;
+  box-shadow: 0 0 8px rgba(95, 215, 160, 0.7);
 }
 
 .collapse-chevron {

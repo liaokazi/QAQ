@@ -41,7 +41,7 @@ const store = useDataStore();
 }
 
 .xianer-tag {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--sys-pink);
   border: 1px solid var(--sys-pink);
   border-radius: 4px;
@@ -49,13 +49,26 @@ const store = useDataStore();
 }
 
 .xianer-bubble {
+  position: relative;
   background: var(--sys-panel);
   border: 1px solid rgba(255, 95, 162, 0.35);
   border-radius: 4px 12px 12px 12px;
   padding: 8px 10px;
   color: var(--sys-text);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   word-break: break-word;
+}
+
+/* 气泡小尾巴 */
+.xianer-bubble::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 14px;
+  border-style: solid;
+  border-width: 6px 8px 6px 0;
+  border-color: transparent var(--sys-panel) transparent transparent;
+  filter: drop-shadow(-1px 0 0 rgba(255, 95, 162, 0.35));
 }
 </style>

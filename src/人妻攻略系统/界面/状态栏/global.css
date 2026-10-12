@@ -31,66 +31,122 @@ body {
 #app {
   font-family: var(--font-ui);
   color: var(--sys-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
 /* 整体面板 */
 .sys-app {
+  position: relative;
   max-width: 660px;
   margin: 0 auto;
-  background: linear-gradient(160deg, var(--sys-bg-2), var(--sys-bg));
-  border: 1px solid var(--sys-border);
+  background-color: var(--sys-bg-2);
+  background-image:
+    linear-gradient(160deg, rgba(31, 10, 43, 0.92), rgba(20, 6, 26, 0.96)),
+    repeating-linear-gradient(0deg, rgba(255, 95, 162, 0.035) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(255, 95, 162, 0.035) 0 1px, transparent 1px 24px);
+  border: 1px solid rgba(255, 95, 162, 0.65);
   border-radius: 14px;
   box-shadow:
-    var(--sys-glow),
+    0 0 10px rgba(255, 45, 120, 0.45),
+    0 0 26px rgba(181, 108, 255, 0.3),
     0 8px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
-/* 通用区块标题 */
+/* 顶部霓虹光条 */
+.sys-app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--sys-pink), var(--sys-violet), transparent);
+  box-shadow: 0 0 8px rgba(255, 45, 120, 0.8);
+  z-index: 2;
+}
+
+/* 通用区块标题：左侧短竖线 */
 .sec-title {
   display: flex;
   align-items: center;
   gap: 6px;
   color: var(--sys-lilac);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 1px;
-  margin: 6px 0 3px;
+  margin: 8px 0 4px;
+  padding-left: 6px;
+  border-left: 3px solid var(--sys-pink);
   text-shadow: 0 0 8px rgba(181, 108, 255, 0.5);
 }
 
-/* 键值网格 */
+/* 键值行式列表（去格子化） */
 .kv-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
 .kv {
-  background: var(--sys-panel);
-  border: 1px solid rgba(181, 108, 255, 0.25);
-  border-radius: 8px;
-  padding: 5px 7px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(181, 108, 255, 0.18);
+  border-radius: 0;
+  padding: 4px 0;
   min-width: 0;
 }
 
+.kv:last-child {
+  border-bottom: none;
+}
+
 .kv .k {
+  flex-shrink: 0;
+  width: 74px;
   display: block;
   color: var(--sys-lilac);
-  font-size: 11px;
-  margin-bottom: 2px;
+  font-size: 12px;
+  margin-bottom: 0;
 }
 
 .kv .v {
+  flex: 1;
   display: block;
   color: var(--sys-text);
   word-break: break-word;
 }
 
 .kv.wide {
-  grid-column: 1 / -1;
+  grid-column: auto;
+}
+
+/* 重点信息彩色横幅（当前状态 / 当前姿势） */
+.status-banner {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: linear-gradient(90deg, rgba(255, 45, 120, 0.18), rgba(181, 108, 255, 0.12));
+  border: 1px solid rgba(255, 95, 162, 0.45);
+  border-radius: 8px;
+}
+
+.status-label {
+  font-weight: 700;
+  color: var(--sys-pink);
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.status-value {
+  color: var(--sys-text);
+  font-size: 13px;
+  word-break: break-word;
 }
 
 /* 空状态 */
@@ -99,7 +155,7 @@ body {
   text-align: center;
   padding: 8px;
   font-style: italic;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 /* 徽章 / 标签 */
@@ -110,7 +166,7 @@ body {
   color: var(--sys-lilac);
   border-radius: 999px;
   padding: 1px 8px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .tag {
@@ -119,7 +175,57 @@ body {
   color: #fff;
   border-radius: 4px;
   padding: 0 6px;
-  font-size: 10px;
+  font-size: 11px;
   margin-left: 4px;
   vertical-align: middle;
+}
+
+/* 粉紫自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 6, 26, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 45, 120, 0.6), rgba(181, 108, 255, 0.6));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--sys-pink-deep), var(--sys-violet));
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 45, 120, 0.6) rgba(20, 6, 26, 0.4);
+}
+
+/* 手机窄屏适配：整体字号 +1px、触摸按钮放大 */
+@media (max-width: 460px) {
+  #app {
+    font-size: 15px;
+  }
+
+  .kv .k {
+    font-size: 13px;
+  }
+
+  .sec-title {
+    font-size: 14px;
+  }
+
+  .status-value {
+    font-size: 14px;
+  }
+
+  .buy-btn,
+  .use-btn {
+    min-height: 40px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
 }

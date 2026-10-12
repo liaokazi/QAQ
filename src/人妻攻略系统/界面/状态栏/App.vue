@@ -8,31 +8,31 @@
     <EnvironmentBar />
     <XianErComment />
 
-    <CollapseSection title="主角个人资料" icon="👤" storage_key="protagonist">
+    <CollapseSection title="主角个人资料" icon="👤" storage_key="protagonist" index="01">
       <ProtagonistSection />
     </CollapseSection>
 
-    <CollapseSection title="人妻攻略" icon="💍" storage_key="renqi" :badge="人妻数量">
+    <CollapseSection title="人妻攻略" icon="💍" storage_key="renqi" index="02" :badge="人妻数量" badge_color="pink">
       <FemaleSection kind="人妻" />
     </CollapseSection>
 
-    <CollapseSection title="女性朋友" icon="👯" storage_key="female_friends" :badge="女性朋友数量">
+    <CollapseSection title="女性朋友" icon="👯" storage_key="female_friends" index="03" :badge="女性朋友数量" badge_color="violet">
       <FemaleSection kind="女性朋友" />
     </CollapseSection>
 
-    <CollapseSection title="背包栏位" icon="🎒" storage_key="inventory" :badge="背包数量">
+    <CollapseSection title="背包栏位" icon="🎒" storage_key="inventory" index="04" :badge="背包数量" badge_color="gold">
       <InventorySection />
     </CollapseSection>
 
-    <CollapseSection title="女性心声" icon="💭" storage_key="inner_thoughts" :badge="女性心声数量">
+    <CollapseSection title="女性心声" icon="💭" storage_key="inner_thoughts" index="05" :badge="女性心声数量" badge_color="violet">
       <InnerThoughtsSection />
     </CollapseSection>
 
-    <CollapseSection title="色欲商场" icon="🛒" storage_key="shop" :badge="`🪙${store.data.商城.点数}`">
+    <CollapseSection title="色欲商场" icon="🛒" storage_key="shop" index="06" :badge="`🪙${store.data.商城.点数}`" badge_color="green">
       <ShopSection />
     </CollapseSection>
 
-    <CollapseSection title="任务" icon="📜" storage_key="quests" :badge="store.data.任务.length">
+    <CollapseSection title="任务" icon="📜" storage_key="quests" index="07" :badge="store.data.任务.length" badge_color="pink">
       <QuestSection />
     </CollapseSection>
   </div>
@@ -76,6 +76,23 @@ const 女性心声数量 = computed(() => _.keys(store.data.女性心声).length
   text-shadow:
     0 0 10px rgba(255, 45, 120, 0.9),
     0 0 24px rgba(181, 108, 255, 0.7);
+  animation: title-breathe 3s ease-in-out infinite;
+}
+
+@keyframes title-breathe {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgba(255, 45, 120, 0.9),
+      0 0 24px rgba(181, 108, 255, 0.7);
+  }
+
+  50% {
+    text-shadow:
+      0 0 16px rgba(255, 45, 120, 1),
+      0 0 36px rgba(181, 108, 255, 0.95),
+      0 0 52px rgba(255, 95, 162, 0.6);
+  }
 }
 
 .app-subtitle {

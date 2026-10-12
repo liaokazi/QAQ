@@ -28,7 +28,7 @@
       <div v-for="f in 节日列表" :key="f.日期" class="festival-item">
         <div class="festival-head">
           <span class="festival-name">🎉 {{ f.名称 }}</span>
-          <span class="festival-date">{{ f.日期 }}</span>
+          <span class="festival-date">{{ f.日期 }}<span v-if="距今(f)" class="festival-countdown"> · {{ 距今(f) }}</span></span>
         </div>
         <div class="festival-desc">{{ f.简介 }}</div>
         <div class="festival-off">🛋 {{ f.放假天数 }}</div>
@@ -70,6 +70,25 @@ const 星期 = computed(() => {
 
 // 节假日由 AI 维护（世界.节假日），这里只显示最近的 2 个
 const 节日列表 = computed(() => (store.data.世界.节假日 || []).slice(0, 2));
+
+// 计算节日距今还有多少天
+const 距今 = (f: { 日期: string }) => {
+  const m = store.data.世界.当前时间.match(/(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/);
+  const d = f.日期.match(/(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})/);
+  if (!m || !d) {
+    return '';
+  }
+  const now = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  const target = new Date(Number(d[1]), Number(d[2]) - 1, Number(d[3]));
+  const diff = Math.round((target.getTime() - now.getTime()) / 86400000);
+  if (diff === 0) {
+    return '就是今天';
+  }
+  if (diff === 1) {
+    return '明天';
+  }
+  return diff > 0 ? `距今 ${diff} 天` : '';
+};
 </script>
 
 <style lang="scss" scoped>
@@ -97,28 +116,25 @@ const 节日列表 = computed(() => (store.data.世界.节假日 || []).slice(0,
 .env-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 2px 12px;
 }
 
 .env-cell {
-  background: var(--sys-panel);
-  border: 1px solid rgba(181, 108, 255, 0.25);
-  border-radius: 8px;
-  padding: 5px 7px;
   display: flex;
-  flex-direction: column;
-  gap: 1px;
+  align-items: baseline;
+  gap: 4px;
   min-width: 0;
 }
 
 .env-k {
   color: var(--sys-lilac);
-  font-size: 10px;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 .env-v {
   color: var(--sys-text);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -149,26 +165,31 @@ const 节日列表 = computed(() => (store.data.世界.节假日 || []).slice(0,
 .festival-name {
   color: var(--sys-gold);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   text-shadow: 0 0 8px rgba(255, 201, 77, 0.5);
 }
 
 .festival-date {
   color: var(--sys-text-dim);
-  font-size: 10px;
+  font-size: 11px;
   white-space: nowrap;
+}
+
+.festival-countdown {
+  color: var(--sys-gold);
+  font-weight: 700;
 }
 
 .festival-desc {
   color: var(--sys-text);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
   margin-top: 1px;
 }
 
 .festival-off {
   color: var(--sys-green);
-  font-size: 10px;
+  font-size: 11px;
   margin-top: 1px;
 }
 

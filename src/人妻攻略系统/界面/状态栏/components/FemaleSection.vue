@@ -4,6 +4,7 @@
 
     <div v-for="(woman, name) in women" :key="name" class="woman-card">
       <button class="woman-row" type="button" @click="toggle(name)">
+        <span class="woman-avatar">{{ kind === '人妻' ? '💍' : '👧' }}</span>
         <span class="woman-name">{{ name }}</span>
         <span class="woman-meta">{{ woman.年龄 ? `${woman.年龄}岁` : '' }} {{ woman.身高 }}</span>
         <span class="chevron" :class="{ open: isOpen(name) }">▾</span>
@@ -61,19 +62,36 @@ function toggle(name: string) {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 10px;
+  padding: 6px 10px;
   background: transparent;
   border: none;
   color: var(--sys-text);
   font-family: inherit;
   font-size: 13px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition:
+    background 0.15s,
+    transform 0.15s;
   text-align: left;
 }
 
 .woman-row:hover {
   background: rgba(255, 45, 120, 0.12);
+  transform: translateX(2px);
+}
+
+.woman-avatar {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 95, 162, 0.35), rgba(181, 108, 255, 0.2));
+  border: 1px solid rgba(255, 95, 162, 0.5);
+  box-shadow: 0 0 8px rgba(255, 45, 120, 0.4);
 }
 
 .woman-name {
