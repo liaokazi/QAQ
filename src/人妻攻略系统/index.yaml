@@ -181,7 +181,7 @@
         ```
         <body>
         <script>
-        $('body').load('https://cdn.jsdelivr.net/gh/liaokazi/QAQ@6b398b395e5c14d70e58342aa5652c161cd906e7/dist/人妻攻略系统/界面/状态栏/index.html')
+        $('body').load('https://testingcf.jsdelivr.net/gh/liaokazi/QAQ@6b398b395e5c14d70e58342aa5652c161cd906e7/dist/人妻攻略系统/界面/状态栏/index.html')
         </script>
         </body>
         ```
