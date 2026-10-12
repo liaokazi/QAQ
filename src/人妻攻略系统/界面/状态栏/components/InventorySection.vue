@@ -6,6 +6,7 @@
       <span class="item-name">{{ name }}</span>
       <span class="item-desc">{{ item.描述 }}</span>
       <span class="item-count">x{{ item.数量 }}</span>
+      <button class="use-btn" type="button" @click="使用(name, item)">使用</button>
     </div>
 
     <div class="trophy">
@@ -37,6 +38,21 @@ const trophy_open = ref(false);
 const 随身物品为空 = computed(() => _.isEmpty(store.data.背包.随身物品));
 const 女性战利品为空 = computed(() => _.isEmpty(store.data.背包.女性战利品));
 const 女性战利品数量 = computed(() => _.keys(store.data.背包.女性战利品).length);
+
+function 使用(name: string, item: { 描述: string; 数量: number }) {
+  if (item.数量 <= 1) {
+    delete store.data.背包.随身物品[name];
+  } else {
+    item.数量 -= 1;
+  }
+  if (typeof toastr !== 'undefined') toastr.success(`已使用「${name}」`);
+  errorCatched(() => {
+    void createChatMessages(
+      [{ role: 'user', message: `（宁懂使用了「${name}」：${item.描述}。请在后续剧情中演绎使用效果）` }],
+      { insert_before: 'end' },
+    );
+  })();
+}
 </script>
 
 <style lang="scss" scoped>
@@ -74,6 +90,24 @@ const 女性战利品数量 = computed(() => _.keys(store.data.背包.女性战�
   border-radius: 4px;
   font-size: 11px;
   white-space: nowrap;
+}
+
+.use-btn {
+  background: var(--sys-pink-deep);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.15s;
+}
+
+.use-btn:hover {
+  filter: brightness(1.2);
 }
 
 .trophy {
