@@ -1,0 +1,44 @@
+{
+    "schema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+            "更新方式": {
+                "type": "string",
+                "enum": [
+                    "随AI输出",
+                    "额外模型解析"
+                ]
+            },
+            "额外模型解析配置": {
+                "type": "object",
+                "properties": {
+                    "启用自动请求": {
+                        "type": "boolean"
+                    },
+                    "世界书条目白名单正则": {
+                        "type": "string"
+                    },
+                    "世界书条目黑名单正则": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": true
+            },
+            "兼容性": {
+                "type": "object",
+                "properties": {
+                    "更新到聊天变量": {
+                        "type": "boolean"
+                    },
+                    "sendas不视为user消息": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": true
+            }
+        },
+        "additionalProperties": true,
+        "title": "CharacterSettingsOverride"
+    }
+}
