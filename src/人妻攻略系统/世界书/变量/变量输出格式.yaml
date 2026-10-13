@@ -2,6 +2,7 @@
 变量输出格式:
   rule:
     - you must output the update analysis and the actual update commands at once in the end of the next reply
+    - go through the `每轮必做` checklist in the 变量更新规则 field by field, and include every change of this reply in the JSON patch
     - the update commands works like the **JSON Patch (RFC 6902)** standard, must be a valid JSON array containing operation objects, but supports the following operations instead:
       - replace: replace the value of existing paths
       - delta: update the value of existing number paths by a delta value
