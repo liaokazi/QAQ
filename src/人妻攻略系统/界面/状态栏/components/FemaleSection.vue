@@ -7,6 +7,7 @@
         <span class="woman-avatar">{{ kind === '人妻' ? '💍' : '👧' }}</span>
         <span class="woman-name">{{ name }}</span>
         <span v-if="isNearby(name)" class="nearby-mark" title="就在附近">📍</span>
+        <span v-if="isPregnant(woman)" class="preg-mark" title="怀孕中">🤰</span>
         <span class="woman-meta">{{ woman.年龄 ? `${woman.年龄}岁` : '' }} {{ woman.身高 }}</span>
         <span class="chevron" :class="{ open: isOpen(name) }">▾</span>
       </button>
@@ -30,6 +31,7 @@ const women = computed<Record<string, 女性资料>>(() => store.data[props.kind
 const isEmpty = computed(() => _.isEmpty(women.value));
 const 附近女性 = computed(() => new Set(store.data.世界.附近女性 || []));
 const isNearby = (name: string) => 附近女性.value.has(name);
+const isPregnant = (woman: 女性资料) => (woman.怀孕?.怀孕状态?.孕周 ?? 0) > 0;
 
 const opened = ref<string[]>([]);
 
@@ -108,6 +110,12 @@ function toggle(name: string) {
   font-size: 11px;
   flex-shrink: 0;
   filter: drop-shadow(0 0 4px rgba(255, 95, 162, 0.8));
+}
+
+.preg-mark {
+  font-size: 11px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(255, 201, 77, 0.9));
 }
 
 .woman-meta {

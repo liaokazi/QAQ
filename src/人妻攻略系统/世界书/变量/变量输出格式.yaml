@@ -4,6 +4,9 @@
     - you must output the update analysis and the actual update commands at once in the end of the next reply
     - go through the `每轮必做` checklist in the 变量更新规则 field by field, and include every change of this reply in the JSON patch
     - the JSON patch must be strictly valid JSON. Quotes, commas and brackets must be complete, field names and values must all use double quotes (e.g. the field "点数" with its value). A malformed patch will be discarded by the system
+    - for every woman in the 附近女性 list or appearing in this reply: the JSON patch must include one 当前状态 entry and one 当前姿势 entry for each of them. A missing name makes the patch invalid
+    - if time has advanced by 1 hour or more: every woman NOT in the reply must get one 当前状态 entry describing what she did during that period (a reasonable daily progression based on her previous state, do not fabricate major plot events)
+    - if the number of items in 商城.道具 is less than 4: add new items to refill it to exactly 4, chosen to match the current plot and tasks
     - the update commands works like the **JSON Patch (RFC 6902)** standard, must be a valid JSON array containing operation objects, but supports the following operations instead:
       - replace: replace the value of existing paths
       - delta: update the value of existing number paths by a delta value
