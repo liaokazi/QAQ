@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <div class="kv-grid">
+    <div v-if="nearby" class="kv-grid">
       <div class="kv">
         <span class="k">生日</span>
         <span class="v">{{ woman.生日 || '—' }}</span>
@@ -18,6 +18,10 @@
         <span class="v">{{ woman.详细性格 || '—' }}</span>
       </div>
     </div>
+    <div v-else class="kv">
+      <span class="k">{{ partnerLabel }}</span>
+      <span class="v">{{ partnerValue || '—' }}</span>
+    </div>
 
     <div class="status-banner">
       <span class="status-label">⚡ 当前状态</span>
@@ -29,30 +33,32 @@
       <span class="status-value">{{ woman.当前姿势 || '—' }}</span>
     </div>
 
-    <div class="sec-title">👗 穿着</div>
-    <div class="kv-grid">
-      <div v-for="(val, slot) in woman.穿着" :key="slot" class="kv">
-        <span class="k">{{ slot }}</span>
-        <span class="v">{{ val || '—' }}</span>
+    <template v-if="nearby">
+      <div class="sec-title">👗 穿着</div>
+      <div class="kv-grid">
+        <div v-for="(val, slot) in woman.穿着" :key="slot" class="kv">
+          <span class="k">{{ slot }}</span>
+          <span class="v">{{ val || '—' }}</span>
+        </div>
       </div>
-    </div>
 
-    <div class="sec-title">💕 私密</div>
-    <div class="private-list">
-      <div v-for="(part, partName) in woman.私密" :key="partName" class="private-card">
-        <div class="private-name">
-          <span class="part-dot" :style="{ background: 部位色[partName] || '#ff5fa2' }"></span>{{ partName }}
-        </div>
-        <div class="private-row">
-          <span class="private-k">形状</span>
-          <span class="private-v">{{ part.形状 || '—' }}</span>
-        </div>
-        <div class="private-row">
-          <span class="private-k">状态</span>
-          <span class="private-v">{{ part.当前状态 || '—' }}</span>
+      <div class="sec-title">💕 私密</div>
+      <div class="private-list">
+        <div v-for="(part, partName) in woman.私密" :key="partName" class="private-card">
+          <div class="private-name">
+            <span class="part-dot" :style="{ background: 部位色[partName] || '#ff5fa2' }"></span>{{ partName }}
+          </div>
+          <div class="private-row">
+            <span class="private-k">形状</span>
+            <span class="private-v">{{ part.形状 || '—' }}</span>
+          </div>
+          <div class="private-row">
+            <span class="private-k">状态</span>
+            <span class="private-v">{{ part.当前状态 || '—' }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </template>
 
     <div class="preg">
       <button class="preg-head" type="button" @click="preg_open = !preg_open">
@@ -137,6 +143,7 @@ const props = defineProps<{
   kind: '人妻' | '女性朋友';
   name: string;
   woman: 女性资料;
+  nearby: boolean;
 }>();
 
 const partnerLabel = computed(() => (props.kind === '人妻' ? '丈夫' : '男朋友'));

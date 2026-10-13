@@ -6,12 +6,13 @@
       <button class="woman-row" type="button" @click="toggle(name)">
         <span class="woman-avatar">{{ kind === '人妻' ? '💍' : '👧' }}</span>
         <span class="woman-name">{{ name }}</span>
+        <span v-if="isNearby(name)" class="nearby-mark" title="就在附近">📍</span>
         <span class="woman-meta">{{ woman.年龄 ? `${woman.年龄}岁` : '' }} {{ woman.身高 }}</span>
         <span class="chevron" :class="{ open: isOpen(name) }">▾</span>
       </button>
 
       <div v-show="isOpen(name)" class="woman-detail">
-        <FemaleDetail :kind="kind" :name="name" :woman="woman" />
+        <FemaleDetail :kind="kind" :name="name" :woman="woman" :nearby="isNearby(name)" />
       </div>
     </div>
   </div>
@@ -27,6 +28,8 @@ const props = defineProps<{ kind: '人妻' | '女性朋友' }>();
 const store = useDataStore();
 const women = computed<Record<string, 女性资料>>(() => store.data[props.kind]);
 const isEmpty = computed(() => _.isEmpty(women.value));
+const 附近女性 = computed(() => new Set(store.data.世界.附近女性 || []));
+const isNearby = (name: string) => 附近女性.value.has(name);
 
 const opened = ref<string[]>([]);
 
@@ -99,6 +102,12 @@ function toggle(name: string) {
   color: var(--sys-pink);
   text-shadow: 0 0 6px rgba(255, 95, 162, 0.5);
   white-space: nowrap;
+}
+
+.nearby-mark {
+  font-size: 11px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(255, 95, 162, 0.8));
 }
 
 .woman-meta {

@@ -28,6 +28,13 @@
           "default": "",
           "type": "string"
         },
+        "附近女性": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "天气": {
           "default": {},
           "type": "object",

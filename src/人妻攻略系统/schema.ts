@@ -100,6 +100,7 @@ export const Schema = z.object({
         })
         .prefault({}),
       当前时间: z.string().default(''),
+      附近女性: z.array(z.string()).default([]),
       天气: z
         .object({
           天气: z.string().default(''),
