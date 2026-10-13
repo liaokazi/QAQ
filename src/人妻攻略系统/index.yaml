@@ -181,7 +181,7 @@
         ```
         <body>
         <script>
-        $('body').load('https://testingcf.jsdelivr.net/gh/liaokazi/QAQ@07e0bddc14e1485b6ab8ec15b4a63bec69018970/dist/人妻攻略系统/界面/状态栏/index.html')
+        $('body').load('https://testingcf.jsdelivr.net/gh/liaokazi/QAQ@0808fa50e89e2893cb887e73a3b65dfab1b6094f/dist/人妻攻略系统/界面/状态栏/index.html')
         </script>
         </body>
         ```
@@ -206,4 +206,4 @@
         启用: true
         类型: 脚本
         内容: |-
-          import 'https://cdn.jsdelivr.net/gh/liaokazi/QAQ@07e0bddc14e1485b6ab8ec15b4a63bec69018970/dist/人妻攻略系统/脚本/变量结构/index.js'
+          import 'https://cdn.jsdelivr.net/gh/liaokazi/QAQ@0808fa50e89e2893cb887e73a3b65dfab1b6094f/dist/人妻攻略系统/脚本/变量结构/index.js'
