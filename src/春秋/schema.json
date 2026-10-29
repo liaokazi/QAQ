@@ -1,0 +1,713 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "纪年": {
+          "default": "",
+          "type": "string"
+        },
+        "季节": {
+          "default": "",
+          "type": "string"
+        },
+        "节气": {
+          "default": "",
+          "type": "string"
+        },
+        "天气": {
+          "default": "",
+          "type": "string"
+        },
+        "地点": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "大区": {
+              "default": "",
+              "type": "string"
+            },
+            "小区": {
+              "default": "",
+              "type": "string"
+            },
+            "所在地": {
+              "default": "",
+              "type": "string"
+            }
+          }
+        },
+        "当前事件": {
+          "default": "",
+          "type": "string"
+        },
+        "灾异预警": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "仙儿": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "吐槽": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "主角": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "姓名": {
+          "default": "",
+          "type": "string"
+        },
+        "年龄": {
+          "default": 0,
+          "type": "number"
+        },
+        "身份": {
+          "default": "",
+          "type": "string"
+        },
+        "当前状态": {
+          "default": "",
+          "type": "string"
+        },
+        "当前姿势": {
+          "default": "",
+          "type": "string"
+        },
+        "衣着": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "社稷": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "领地等级": {
+          "default": 1,
+          "type": "number"
+        },
+        "领地半径": {
+          "default": 1,
+          "type": "number"
+        },
+        "经验值": {
+          "default": 0,
+          "type": "number"
+        },
+        "升级所需": {
+          "default": 100,
+          "type": "number"
+        },
+        "点数": {
+          "default": 0,
+          "type": "number"
+        },
+        "域内外": {
+          "default": "域内",
+          "type": "string"
+        },
+        "外出剩余": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "人口": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "男丁": {
+          "default": 0,
+          "type": "number"
+        },
+        "女口": {
+          "default": 0,
+          "type": "number"
+        },
+        "老": {
+          "default": 0,
+          "type": "number"
+        },
+        "少": {
+          "default": 0,
+          "type": "number"
+        },
+        "幼": {
+          "default": 0,
+          "type": "number"
+        },
+        "奴隶": {
+          "default": 0,
+          "type": "number"
+        },
+        "国人": {
+          "default": 0,
+          "type": "number"
+        },
+        "野人": {
+          "default": 0,
+          "type": "number"
+        },
+        "工匠": {
+          "default": 0,
+          "type": "number"
+        },
+        "士": {
+          "default": 0,
+          "type": "number"
+        },
+        "流民": {
+          "default": 0,
+          "type": "number"
+        }
+      }
+    },
+    "资源": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "食物": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "粟": {
+              "default": 0,
+              "type": "number"
+            },
+            "麦": {
+              "default": 0,
+              "type": "number"
+            },
+            "稻": {
+              "default": 0,
+              "type": "number"
+            },
+            "豆": {
+              "default": 0,
+              "type": "number"
+            },
+            "肉食": {
+              "default": 0,
+              "type": "number"
+            },
+            "盐": {
+              "default": 0,
+              "type": "number"
+            },
+            "果蔬": {
+              "default": 0,
+              "type": "number"
+            },
+            "酒": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        },
+        "武器": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "剑": {
+              "default": 0,
+              "type": "number"
+            },
+            "戈": {
+              "default": 0,
+              "type": "number"
+            },
+            "矛": {
+              "default": 0,
+              "type": "number"
+            },
+            "戟": {
+              "default": 0,
+              "type": "number"
+            },
+            "弓": {
+              "default": 0,
+              "type": "number"
+            },
+            "箭矢": {
+              "default": 0,
+              "type": "number"
+            },
+            "甲": {
+              "default": 0,
+              "type": "number"
+            },
+            "盾": {
+              "default": 0,
+              "type": "number"
+            },
+            "弩": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        },
+        "各种": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "木": {
+              "default": 0,
+              "type": "number"
+            },
+            "石": {
+              "default": 0,
+              "type": "number"
+            },
+            "瓦": {
+              "default": 0,
+              "type": "number"
+            },
+            "石灰": {
+              "default": 0,
+              "type": "number"
+            },
+            "铜": {
+              "default": 0,
+              "type": "number"
+            },
+            "铁": {
+              "default": 0,
+              "type": "number"
+            },
+            "布帛": {
+              "default": 0,
+              "type": "number"
+            },
+            "财产": {
+              "default": 0,
+              "type": "number"
+            },
+            "马": {
+              "default": 0,
+              "type": "number"
+            },
+            "牛": {
+              "default": 0,
+              "type": "number"
+            },
+            "羊": {
+              "default": 0,
+              "type": "number"
+            },
+            "猪": {
+              "default": 0,
+              "type": "number"
+            },
+            "车乘": {
+              "default": 0,
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "田亩": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "垦田总数": {
+          "default": 0,
+          "type": "number"
+        },
+        "井田亩数": {
+          "default": 0,
+          "type": "number"
+        },
+        "私田亩数": {
+          "default": 0,
+          "type": "number"
+        },
+        "水利": {
+          "default": "",
+          "type": "string"
+        },
+        "农时": {
+          "default": "",
+          "type": "string"
+        },
+        "收成预期": {
+          "default": "",
+          "type": "string"
+        },
+        "荒情": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "建筑": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "等级": {
+            "default": 1,
+            "type": "number"
+          },
+          "位置": {
+            "default": "",
+            "type": "string"
+          },
+          "状态": {
+            "default": "",
+            "type": "string"
+          },
+          "功能": {
+            "default": "",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "军事": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "战车": {
+          "default": 0,
+          "type": "number"
+        },
+        "甲士": {
+          "default": 0,
+          "type": "number"
+        },
+        "徒兵": {
+          "default": 0,
+          "type": "number"
+        },
+        "训练度": {
+          "default": "",
+          "type": "string"
+        },
+        "士气": {
+          "default": "",
+          "type": "string"
+        },
+        "军粮": {
+          "default": "",
+          "type": "string"
+        },
+        "将领": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "职位": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "外交": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "邻国": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "关系": {
+                "default": "",
+                "type": "string"
+              },
+              "态度": {
+                "default": "",
+                "type": "string"
+              },
+              "使节": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "会盟": {
+          "default": "",
+          "type": "string"
+        },
+        "纳贡": {
+          "default": "",
+          "type": "string"
+        },
+        "受命进度": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "情报": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "周边动态": {
+          "default": "",
+          "type": "string"
+        },
+        "在野人物": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "身份": {
+                "default": "",
+                "type": "string"
+              },
+              "所在地": {
+                "default": "",
+                "type": "string"
+              },
+              "才能": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "大事记": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "宗族": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "氏族": {
+          "default": "",
+          "type": "string"
+        },
+        "族长": {
+          "default": "",
+          "type": "string"
+        },
+        "大宗": {
+          "default": "",
+          "type": "string"
+        },
+        "小宗": {
+          "default": "",
+          "type": "string"
+        },
+        "嫡庶": {
+          "default": "",
+          "type": "string"
+        },
+        "成员": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "辈分": {
+                "default": "",
+                "type": "string"
+              },
+              "身份": {
+                "default": "",
+                "type": "string"
+              },
+              "关系": {
+                "default": "",
+                "type": "string"
+              },
+              "在否": {
+                "default": "",
+                "type": "string"
+              },
+              "职务": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "联姻": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "法度": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "状态": {
+          "default": "",
+          "type": "string"
+        },
+        "法令": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "司法": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "名分": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "身份等级": {
+          "default": "",
+          "type": "string"
+        },
+        "受命状态": {
+          "default": "",
+          "type": "string"
+        },
+        "礼器规格": {
+          "default": "",
+          "type": "string"
+        },
+        "舆服规格": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "商城": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "上架商品": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "数量": {
+                "default": 1,
+                "type": "number"
+              },
+              "档位": {
+                "default": "",
+                "type": "string"
+              },
+              "点数": {
+                "default": 0,
+                "type": "number"
+              },
+              "理由": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "库存": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "数量": {
+                "default": 1,
+                "type": "number"
+              },
+              "档位": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "任务": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "default": {},
+        "type": "object",
+        "properties": {
+          "名称": {
+            "default": "",
+            "type": "string"
+          },
+          "描述": {
+            "default": "",
+            "type": "string"
+          },
+          "进度": {
+            "default": "",
+            "type": "string"
+          },
+          "状态": {
+            "default": "进行中",
+            "type": "string"
+          },
+          "奖励点数": {
+            "default": 0,
+            "type": "number"
+          },
+          "奖励经验": {
+            "default": 0,
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

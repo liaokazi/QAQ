@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* 春秋「青铜·玄色·竹简」配色 */
+  --sys-bg: #141009;
+  --sys-bg-2: #1c1610;
+  --sys-panel: #26201a;
+  --sys-panel-2: #302820;
+  --sys-bronze: #cd9b5a;
+  --sys-gold: #e6c07a;
+  --sys-green: #93b57a;
+  --sys-jade: #7fb8a0;
+  --sys-cinnabar: #c85a3f;
+  --sys-cinnabar-deep: #a63e28;
+  --sys-text: #efe5d2;
+  --sys-text-dim: #b6a88c;
+  --sys-border: rgba(205, 155, 90, 0.45);
+  --font-ui: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+}
+
+html,
+body {
+  background: transparent;
+}
+
+#app {
+  font-family: var(--font-ui);
+  color: var(--sys-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sys-app {
+  position: relative;
+  max-width: 660px;
+  margin: 0 auto;
+  background-color: var(--sys-bg-2);
+  background-image:
+    linear-gradient(160deg, rgba(28, 22, 16, 0.94), rgba(20, 16, 9, 0.97)),
+    repeating-linear-gradient(0deg, rgba(205, 155, 90, 0.03) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(205, 155, 90, 0.03) 0 1px, transparent 1px 24px);
+  border: 1px solid rgba(205, 155, 90, 0.6);
+  border-radius: 12px;
+  box-shadow:
+    0 0 10px rgba(205, 155, 90, 0.35),
+    0 0 26px rgba(120, 90, 50, 0.25),
+    0 8px 30px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.sys-app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--sys-bronze), var(--sys-gold), transparent);
+  box-shadow: 0 0 8px rgba(205, 155, 90, 0.7);
+  z-index: 2;
+}
+
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sys-bronze);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin: 8px 0 4px;
+  padding-left: 6px;
+  border-left: 3px solid var(--sys-bronze);
+}
+
+.kv {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  border-bottom: 1px dashed rgba(205, 155, 90, 0.18);
+  padding: 4px 0;
+  min-width: 0;
+}
+
+.kv:last-child {
+  border-bottom: none;
+}
+
+.kv .k {
+  flex-shrink: 0;
+  width: 72px;
+  display: block;
+  color: var(--sys-text-dim);
+  font-size: 12px;
+}
+
+.kv .v {
+  flex: 1;
+  display: block;
+  color: var(--sys-text);
+  word-break: break-word;
+}
+
+.empty {
+  color: var(--sys-text-dim);
+  text-align: center;
+  padding: 8px;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* 数值小徽章 */
+.chip {
+  display: inline-block;
+  background: var(--sys-panel-2);
+  border: 1px solid rgba(205, 155, 90, 0.5);
+  color: var(--sys-text);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  margin: 0 4px 4px 0;
+}
+
+.chip b {
+  color: var(--sys-gold);
+  font-weight: 800;
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(20, 16, 9, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(205, 155, 90, 0.6), rgba(120, 90, 50, 0.6));
+  border-radius: 4px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(205, 155, 90, 0.6) rgba(20, 16, 9, 0.4);
+}
+
+@media (max-width: 460px) {
+  #app {
+    font-size: 15px;
+  }
+
+  .kv .k {
+    font-size: 13px;
+  }
+
+  .sec-title {
+    font-size: 14px;
+  }
+
+  .buy-btn {
+    min-height: 40px;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+}
