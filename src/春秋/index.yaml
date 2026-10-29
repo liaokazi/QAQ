@@ -243,7 +243,7 @@
         ```
         <body>
         <script>
-        $('body').load('https://testingcf.jsdelivr.net/gh/liaokazi/QAQ@30a24f2a0848a603d4628ba7b644ea8003bdcce4/dist/春秋/界面/状态栏/index.html')
+        $('body').load('https://testingcf.jsdelivr.net/gh/liaokazi/QAQ@55a2be4f41db1235f35068b150350c31419c0fb2/dist/春秋/界面/状态栏/index.html')
         </script>
         </body>
         ```
@@ -268,4 +268,4 @@
         启用: true
         类型: 脚本
         内容: |-
-          import 'https://cdn.jsdelivr.net/gh/liaokazi/QAQ@30a24f2a0848a603d4628ba7b644ea8003bdcce4/dist/春秋/脚本/变量结构/index.js'
+          import 'https://cdn.jsdelivr.net/gh/liaokazi/QAQ@55a2be4f41db1235f35068b150350c31419c0fb2/dist/春秋/脚本/变量结构/index.js'
