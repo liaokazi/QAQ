@@ -64,3 +64,4 @@ const 任务 = computed(() => store.data.任务);
   font-size: 12px;
   margin-top: 2px;
 }
+</style>

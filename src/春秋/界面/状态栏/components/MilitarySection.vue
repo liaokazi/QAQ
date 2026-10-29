@@ -86,3 +86,4 @@ const 在野人物 = computed(() => Object.entries(store.data.情报.在野人�
   font-size: 12px;
   margin-top: 1px;
 }
+</style>

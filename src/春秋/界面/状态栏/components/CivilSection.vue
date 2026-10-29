@@ -100,3 +100,4 @@ const 建筑 = computed(() => Object.entries(store.data.建筑));
   font-size: 12px;
   margin-top: 1px;
 }
+</style>

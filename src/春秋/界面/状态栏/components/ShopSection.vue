@@ -207,3 +207,4 @@ function 购买(name: string, item: { 数量: number; 档位: string; 点数: nu
   color: var(--sys-gold);
   font-weight: 700;
 }
+</style>

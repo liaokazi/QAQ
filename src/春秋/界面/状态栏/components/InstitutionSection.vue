@@ -83,3 +83,4 @@ const 法令 = computed(() => Object.entries(store.data.法度.法令));
   font-size: 12px;
   margin-top: 1px;
 }
+</style>
