@@ -181,139 +181,31 @@
         "食物": {
           "default": {},
           "type": "object",
-          "properties": {
-            "粟": {
-              "default": 0,
-              "type": "number"
-            },
-            "麦": {
-              "default": 0,
-              "type": "number"
-            },
-            "稻": {
-              "default": 0,
-              "type": "number"
-            },
-            "豆": {
-              "default": 0,
-              "type": "number"
-            },
-            "肉食": {
-              "default": 0,
-              "type": "number"
-            },
-            "盐": {
-              "default": 0,
-              "type": "number"
-            },
-            "果蔬": {
-              "default": 0,
-              "type": "number"
-            },
-            "酒": {
-              "default": 0,
-              "type": "number"
-            }
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "number"
           }
         },
         "武器": {
           "default": {},
           "type": "object",
-          "properties": {
-            "剑": {
-              "default": 0,
-              "type": "number"
-            },
-            "戈": {
-              "default": 0,
-              "type": "number"
-            },
-            "矛": {
-              "default": 0,
-              "type": "number"
-            },
-            "戟": {
-              "default": 0,
-              "type": "number"
-            },
-            "弓": {
-              "default": 0,
-              "type": "number"
-            },
-            "箭矢": {
-              "default": 0,
-              "type": "number"
-            },
-            "甲": {
-              "default": 0,
-              "type": "number"
-            },
-            "盾": {
-              "default": 0,
-              "type": "number"
-            },
-            "弩": {
-              "default": 0,
-              "type": "number"
-            }
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "number"
           }
         },
         "各种": {
           "default": {},
           "type": "object",
-          "properties": {
-            "木": {
-              "default": 0,
-              "type": "number"
-            },
-            "石": {
-              "default": 0,
-              "type": "number"
-            },
-            "瓦": {
-              "default": 0,
-              "type": "number"
-            },
-            "石灰": {
-              "default": 0,
-              "type": "number"
-            },
-            "铜": {
-              "default": 0,
-              "type": "number"
-            },
-            "铁": {
-              "default": 0,
-              "type": "number"
-            },
-            "布帛": {
-              "default": 0,
-              "type": "number"
-            },
-            "财产": {
-              "default": 0,
-              "type": "number"
-            },
-            "马": {
-              "default": 0,
-              "type": "number"
-            },
-            "牛": {
-              "default": 0,
-              "type": "number"
-            },
-            "羊": {
-              "default": 0,
-              "type": "number"
-            },
-            "猪": {
-              "default": 0,
-              "type": "number"
-            },
-            "车乘": {
-              "default": 0,
-              "type": "number"
-            }
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "number"
           }
         }
       }
@@ -514,27 +406,14 @@
       "default": {},
       "type": "object",
       "properties": {
-        "氏族": {
-          "default": "",
-          "type": "string"
+        "追踪": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
-        "族长": {
-          "default": "",
-          "type": "string"
-        },
-        "大宗": {
-          "default": "",
-          "type": "string"
-        },
-        "小宗": {
-          "default": "",
-          "type": "string"
-        },
-        "嫡庶": {
-          "default": "",
-          "type": "string"
-        },
-        "成员": {
+        "族": {
           "default": {},
           "type": "object",
           "propertyNames": {
@@ -544,32 +423,102 @@
             "default": {},
             "type": "object",
             "properties": {
-              "辈分": {
+              "口数": {
+                "default": 0,
+                "type": "number"
+              },
+              "族长": {
                 "default": "",
                 "type": "string"
               },
-              "身份": {
+              "宗子": {
                 "default": "",
                 "type": "string"
               },
-              "关系": {
+              "嫡庶": {
                 "default": "",
                 "type": "string"
               },
-              "在否": {
+              "凝聚力": {
                 "default": "",
                 "type": "string"
               },
-              "职务": {
+              "状态": {
+                "default": "",
+                "type": "string"
+              },
+              "重要族人": {
+                "default": {},
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {
+                  "default": {},
+                  "type": "object",
+                  "properties": {
+                    "职责": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "才能": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "忠诚": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "关系": {
+                      "default": "",
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "联姻": {
+                "default": "",
+                "type": "string"
+              },
+              "祭祀": {
+                "default": "",
+                "type": "string"
+              },
+              "加成": {
+                "default": "",
+                "type": "string"
+              },
+              "隐患": {
                 "default": "",
                 "type": "string"
               }
             }
           }
         },
-        "联姻": {
-          "default": "",
-          "type": "string"
+        "亡族": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "default": {},
+            "type": "object",
+            "properties": {
+              "起源": {
+                "default": "",
+                "type": "string"
+              },
+              "灭亡": {
+                "default": "",
+                "type": "string"
+              },
+              "存在时间": {
+                "default": "",
+                "type": "string"
+              }
+            }
+          }
         }
       }
     },

@@ -64,48 +64,9 @@ export const Schema = z.object({
 
   资源: z
     .object({
-      食物: z
-        .object({
-          粟: z.coerce.number().default(0),
-          麦: z.coerce.number().default(0),
-          稻: z.coerce.number().default(0),
-          豆: z.coerce.number().default(0),
-          肉食: z.coerce.number().default(0),
-          盐: z.coerce.number().default(0),
-          果蔬: z.coerce.number().default(0),
-          酒: z.coerce.number().default(0),
-        })
-        .prefault({}),
-      武器: z
-        .object({
-          剑: z.coerce.number().default(0),
-          戈: z.coerce.number().default(0),
-          矛: z.coerce.number().default(0),
-          戟: z.coerce.number().default(0),
-          弓: z.coerce.number().default(0),
-          箭矢: z.coerce.number().default(0),
-          甲: z.coerce.number().default(0),
-          盾: z.coerce.number().default(0),
-          弩: z.coerce.number().default(0),
-        })
-        .prefault({}),
-      各种: z
-        .object({
-          木: z.coerce.number().default(0),
-          石: z.coerce.number().default(0),
-          瓦: z.coerce.number().default(0),
-          石灰: z.coerce.number().default(0),
-          铜: z.coerce.number().default(0),
-          铁: z.coerce.number().default(0),
-          布帛: z.coerce.number().default(0),
-          财产: z.coerce.number().default(0),
-          马: z.coerce.number().default(0),
-          牛: z.coerce.number().default(0),
-          羊: z.coerce.number().default(0),
-          猪: z.coerce.number().default(0),
-          车乘: z.coerce.number().default(0),
-        })
-        .prefault({}),
+      食物: z.record(z.string(), z.coerce.number()).default({}),
+      武器: z.record(z.string(), z.coerce.number()).default({}),
+      各种: z.record(z.string(), z.coerce.number()).default({}),
     })
     .prefault({}),
 
@@ -197,26 +158,51 @@ export const Schema = z.object({
 
   宗族: z
     .object({
-      氏族: z.string().default(''),
-      族长: z.string().default(''),
-      大宗: z.string().default(''),
-      小宗: z.string().default(''),
-      嫡庶: z.string().default(''),
-      成员: z
+      追踪: z.array(z.string()).default([]),
+      族: z
         .record(
           z.string(),
           z
             .object({
-              辈分: z.string().default(''),
-              身份: z.string().default(''),
-              关系: z.string().default(''),
-              在否: z.string().default(''),
-              职务: z.string().default(''),
+              口数: z.coerce.number().default(0),
+              族长: z.string().default(''),
+              宗子: z.string().default(''),
+              嫡庶: z.string().default(''),
+              凝聚力: z.string().default(''),
+              状态: z.string().default(''),
+              重要族人: z
+                .record(
+                  z.string(),
+                  z
+                    .object({
+                      职责: z.string().default(''),
+                      才能: z.string().default(''),
+                      忠诚: z.string().default(''),
+                      关系: z.string().default(''),
+                    })
+                    .prefault({}),
+                )
+                .default({}),
+              联姻: z.string().default(''),
+              祭祀: z.string().default(''),
+              加成: z.string().default(''),
+              隐患: z.string().default(''),
             })
             .prefault({}),
         )
         .default({}),
-      联姻: z.string().default(''),
+      亡族: z
+        .record(
+          z.string(),
+          z
+            .object({
+              起源: z.string().default(''),
+              灭亡: z.string().default(''),
+              存在时间: z.string().default(''),
+            })
+            .prefault({}),
+        )
+        .default({}),
     })
     .prefault({}),
 

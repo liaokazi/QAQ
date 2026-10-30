@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="sec-title">👥 人口</div>
+    <div class="sec-title">👥 人口（总 {{ 总人口 }} 口）</div>
     <div class="chip-grid">
       <span v-for="(v, k) in 人口" :key="k" class="chip">{{ k }} <b>{{ v }}</b></span>
     </div>
@@ -8,19 +8,22 @@
     <div class="sec-title">🌾 资源</div>
     <div class="res-group">
       <div class="res-name">食物</div>
-      <div class="chip-grid">
+      <span v-if="!食物.length" class="res-none">暂无</span>
+      <div v-else class="chip-grid">
         <span v-for="(v, k) in 食物" :key="k" class="chip">{{ k }} <b>{{ v }}</b></span>
       </div>
     </div>
     <div class="res-group">
       <div class="res-name">武器</div>
-      <div class="chip-grid">
+      <span v-if="!武器.length" class="res-none">暂无</span>
+      <div v-else class="chip-grid">
         <span v-for="(v, k) in 武器" :key="k" class="chip">{{ k }} <b>{{ v }}</b></span>
       </div>
     </div>
     <div class="res-group">
       <div class="res-name">各种资源</div>
-      <div class="chip-grid">
+      <span v-if="!各种.length" class="res-none">暂无</span>
+      <div v-else class="chip-grid">
         <span v-for="(v, k) in 各种" :key="k" class="chip">{{ k }} <b>{{ v }}</b></span>
       </div>
     </div>
@@ -56,6 +59,11 @@ const 武器 = computed(() => Object.entries(store.data.资源.武器));
 const 各种 = computed(() => Object.entries(store.data.资源.各种));
 const 田亩 = computed(() => store.data.田亩);
 const 建筑 = computed(() => Object.entries(store.data.建筑));
+
+const 总人口 = computed(() => {
+  const p = store.data.人口;
+  return p.男丁 + p.女口 + p.老 + p.少 + p.幼 + p.奴隶;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -67,6 +75,12 @@ const 建筑 = computed(() => Object.entries(store.data.建筑));
   color: var(--sys-bronze);
   font-size: 12px;
   margin: 3px 0 2px;
+}
+
+.res-none {
+  color: var(--sys-text-dim);
+  font-size: 12px;
+  font-style: italic;
 }
 
 .row-card {
@@ -82,6 +96,7 @@ const 建筑 = computed(() => Object.entries(store.data.建筑));
   justify-content: space-between;
   align-items: baseline;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .row-name {
