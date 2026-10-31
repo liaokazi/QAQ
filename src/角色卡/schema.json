@@ -1,0 +1,950 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "type": "object",
+      "properties": {
+        "纪年": {
+          "type": "string"
+        },
+        "季节": {
+          "type": "string",
+          "enum": [
+            "春",
+            "夏",
+            "秋",
+            "冬"
+          ]
+        },
+        "节气": {
+          "type": "string"
+        },
+        "月": {
+          "type": "number"
+        },
+        "日": {
+          "type": "number"
+        },
+        "时间": {
+          "type": "string"
+        },
+        "天气": {
+          "type": "string"
+        },
+        "温度": {
+          "type": "number"
+        },
+        "地点": {
+          "type": "object",
+          "properties": {
+            "大区": {
+              "type": "string"
+            },
+            "小区": {
+              "type": "string"
+            },
+            "所在地": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "大区",
+            "小区",
+            "所在地"
+          ]
+        },
+        "当前事件": {
+          "type": "string"
+        },
+        "灾异预警": {
+          "type": "string"
+        },
+        "外出": {
+          "type": "object",
+          "properties": {
+            "状态": {
+              "type": "string",
+              "enum": [
+                "界内",
+                "界外"
+              ]
+            },
+            "剩余天数": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "状态",
+            "剩余天数"
+          ]
+        }
+      },
+      "required": [
+        "纪年",
+        "季节",
+        "节气",
+        "月",
+        "日",
+        "时间",
+        "天气",
+        "温度",
+        "地点",
+        "当前事件",
+        "灾异预警",
+        "外出"
+      ]
+    },
+    "仙儿": {
+      "type": "object",
+      "properties": {
+        "吐槽": {
+          "type": "string"
+        },
+        "当前指引": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "吐槽",
+        "当前指引"
+      ]
+    },
+    "主角": {
+      "type": "object",
+      "properties": {
+        "姓名": {
+          "type": "string"
+        },
+        "年龄": {
+          "type": "number"
+        },
+        "身份": {
+          "type": "string"
+        },
+        "当前状态": {
+          "type": "string"
+        },
+        "当前姿势": {
+          "type": "string"
+        },
+        "衣着": {
+          "type": "string"
+        },
+        "系统背包": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "物品名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "描述": {
+                "type": "string"
+              },
+              "数量": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "描述",
+              "数量"
+            ]
+          }
+        },
+        "妻妾": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "妻妾名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "年龄": {
+                "type": "number"
+              },
+              "身份": {
+                "type": "string"
+              },
+              "感情": {
+                "type": "string"
+              },
+              "生育": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "description": "子女名"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "年龄": {
+                      "type": "number"
+                    },
+                    "性别": {
+                      "type": "string"
+                    },
+                    "嫡庶": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "年龄",
+                    "性别",
+                    "嫡庶"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "年龄",
+              "身份",
+              "感情",
+              "生育"
+            ]
+          }
+        }
+      },
+      "required": [
+        "姓名",
+        "年龄",
+        "身份",
+        "当前状态",
+        "当前姿势",
+        "衣着",
+        "系统背包",
+        "妻妾"
+      ]
+    },
+    "社稷": {
+      "type": "object",
+      "properties": {
+        "领地等级": {
+          "type": "number"
+        },
+        "领域半径": {
+          "type": "number"
+        },
+        "经验": {
+          "type": "number"
+        },
+        "升级所需": {
+          "type": "number"
+        },
+        "点数": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "领地等级",
+        "领域半径",
+        "经验",
+        "升级所需",
+        "点数"
+      ]
+    },
+    "人口": {
+      "type": "object",
+      "properties": {
+        "总数": {
+          "type": "number"
+        },
+        "劳力": {
+          "type": "number"
+        },
+        "老幼": {
+          "type": "number"
+        },
+        "国人": {
+          "type": "number"
+        },
+        "野人": {
+          "type": "number"
+        },
+        "奴隶": {
+          "type": "number"
+        },
+        "流民": {
+          "type": "number"
+        },
+        "民心": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "总数",
+        "劳力",
+        "老幼",
+        "国人",
+        "野人",
+        "奴隶",
+        "流民",
+        "民心"
+      ]
+    },
+    "资源": {
+      "type": "object",
+      "properties": {
+        "粮食": {
+          "type": "number"
+        },
+        "木材": {
+          "type": "number"
+        },
+        "石料": {
+          "type": "number"
+        },
+        "铜": {
+          "type": "number"
+        },
+        "铁": {
+          "type": "number"
+        },
+        "盐": {
+          "type": "number"
+        },
+        "丝": {
+          "type": "number"
+        },
+        "牲畜": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "粮食",
+        "木材",
+        "石料",
+        "铜",
+        "铁",
+        "盐",
+        "丝",
+        "牲畜"
+      ]
+    },
+    "田亩": {
+      "type": "object",
+      "properties": {
+        "垦田总数": {
+          "type": "number"
+        },
+        "井田亩数": {
+          "type": "number"
+        },
+        "私田亩数": {
+          "type": "number"
+        },
+        "水利": {
+          "type": "string"
+        },
+        "农时": {
+          "type": "string"
+        },
+        "收成预期": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "垦田总数",
+        "井田亩数",
+        "私田亩数",
+        "水利",
+        "农时",
+        "收成预期"
+      ]
+    },
+    "建筑": {
+      "type": "object",
+      "properties": {
+        "常制": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "建筑名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "数量": {
+                "type": "number"
+              },
+              "等级": {
+                "type": "number"
+              },
+              "效果": {
+                "type": "string"
+              },
+              "进度": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "数量",
+              "等级",
+              "效果",
+              "进度"
+            ]
+          }
+        },
+        "特殊": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "特殊建筑名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "数量": {
+                "type": "number"
+              },
+              "等级": {
+                "type": "number"
+              },
+              "效果": {
+                "type": "string"
+              },
+              "进度": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "数量",
+              "等级",
+              "效果",
+              "进度"
+            ]
+          }
+        }
+      },
+      "required": [
+        "常制",
+        "特殊"
+      ]
+    },
+    "法律": {
+      "type": "object",
+      "properties": {
+        "法度状态": {
+          "type": "string"
+        },
+        "司法": {
+          "type": "string"
+        },
+        "已颁律令": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "律令名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "条文": {
+                "type": "string"
+              },
+              "效果": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "条文",
+              "效果"
+            ]
+          }
+        }
+      },
+      "required": [
+        "法度状态",
+        "司法",
+        "已颁律令"
+      ]
+    },
+    "军事": {
+      "type": "object",
+      "properties": {
+        "战车": {
+          "type": "number"
+        },
+        "甲士": {
+          "type": "number"
+        },
+        "徒兵": {
+          "type": "number"
+        },
+        "训练度": {
+          "type": "string"
+        },
+        "士气": {
+          "type": "string"
+        },
+        "军粮": {
+          "type": "string"
+        },
+        "将领": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "将领名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "专长": {
+                "type": "string"
+              },
+              "忠心": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "专长",
+              "忠心"
+            ]
+          }
+        }
+      },
+      "required": [
+        "战车",
+        "甲士",
+        "徒兵",
+        "训练度",
+        "士气",
+        "军粮",
+        "将领"
+      ]
+    },
+    "宗族": {
+      "type": "object",
+      "properties": {
+        "本宗": {
+          "type": "object",
+          "properties": {
+            "氏": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "等级": {
+              "type": "number"
+            },
+            "宗庙等级": {
+              "type": "number"
+            },
+            "族谱": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "description": "族人名"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "关系": {
+                    "type": "string"
+                  },
+                  "年龄": {
+                    "type": "number"
+                  },
+                  "身份": {
+                    "type": "string"
+                  },
+                  "存殁": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "关系",
+                  "年龄",
+                  "身份",
+                  "存殁"
+                ]
+              }
+            }
+          },
+          "required": [
+            "氏",
+            "等级",
+            "宗庙等级",
+            "族谱"
+          ]
+        },
+        "诸宗": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "宗族氏"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "族长": {
+                "type": "string"
+              },
+              "族长年龄": {
+                "type": "number"
+              },
+              "继承人": {
+                "type": "string"
+              },
+              "继承人年龄": {
+                "type": "number"
+              },
+              "继承人嫡庶": {
+                "type": "string"
+              },
+              "直系亲属": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "description": "亲属名"
+                },
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "年龄": {
+                      "type": "number"
+                    },
+                    "身份": {
+                      "type": "string"
+                    },
+                    "备注": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "年龄",
+                    "身份",
+                    "备注"
+                  ]
+                }
+              },
+              "人丁": {
+                "type": "number"
+              },
+              "族兵": {
+                "type": "number"
+              },
+              "族产": {
+                "type": "number"
+              },
+              "实力": {
+                "type": "number"
+              },
+              "倾向": {
+                "type": "string"
+              },
+              "关系": {
+                "type": "string"
+              },
+              "族史": {
+                "type": "string"
+              },
+              "俊才": {
+                "type": "string"
+              },
+              "是否关注": {
+                "type": "boolean"
+              },
+              "最近动向": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "族长",
+              "族长年龄",
+              "继承人",
+              "继承人年龄",
+              "继承人嫡庶",
+              "直系亲属",
+              "人丁",
+              "族兵",
+              "族产",
+              "实力",
+              "倾向",
+              "关系",
+              "族史",
+              "俊才",
+              "是否关注",
+              "最近动向"
+            ]
+          }
+        },
+        "灭亡": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "灭亡宗族氏"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "来历": {
+                "type": "string"
+              },
+              "亡因": {
+                "type": "string"
+              },
+              "始族": {
+                "type": "object",
+                "properties": {
+                  "名": {
+                    "type": "string"
+                  },
+                  "介绍": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "名",
+                  "介绍"
+                ]
+              },
+              "末主": {
+                "type": "object",
+                "properties": {
+                  "名": {
+                    "type": "string"
+                  },
+                  "介绍": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "名",
+                  "介绍"
+                ]
+              },
+              "遗民": {
+                "type": "number"
+              },
+              "族田": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "来历",
+              "亡因",
+              "始族",
+              "末主",
+              "遗民",
+              "族田"
+            ]
+          }
+        },
+        "动态": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "本宗",
+        "诸宗",
+        "灭亡",
+        "动态"
+      ]
+    },
+    "外交": {
+      "type": "object",
+      "properties": {
+        "邻国": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "国名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "关系": {
+                "type": "string"
+              },
+              "动向": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "关系",
+              "动向"
+            ]
+          }
+        },
+        "会盟": {
+          "type": "string"
+        },
+        "纳贡": {
+          "type": "string"
+        },
+        "受命进度": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "邻国",
+        "会盟",
+        "纳贡",
+        "受命进度"
+      ]
+    },
+    "情报": {
+      "type": "object",
+      "properties": {
+        "周边动态": {
+          "type": "string"
+        },
+        "在野人物": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "大事记": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "天下大事": {
+          "type": "object",
+          "properties": {
+            "头条": {
+              "type": "string"
+            },
+            "本土宗族活跃": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "头条",
+            "本土宗族活跃"
+          ]
+        }
+      },
+      "required": [
+        "周边动态",
+        "在野人物",
+        "大事记",
+        "天下大事"
+      ]
+    },
+    "名分": {
+      "type": "object",
+      "properties": {
+        "身份等级": {
+          "type": "string"
+        },
+        "受命状态": {
+          "type": "string"
+        },
+        "礼器规格": {
+          "type": "string"
+        },
+        "舆服规格": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "身份等级",
+        "受命状态",
+        "礼器规格",
+        "舆服规格"
+      ]
+    },
+    "商城": {
+      "type": "object",
+      "properties": {
+        "上架商品": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "商品名"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "价格": {
+                "type": "number"
+              },
+              "描述": {
+                "type": "string"
+              },
+              "数量": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "价格",
+              "描述",
+              "数量"
+            ]
+          }
+        }
+      },
+      "required": [
+        "上架商品"
+      ]
+    },
+    "任务": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "任务名"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "描述": {
+            "type": "string"
+          },
+          "进度": {
+            "type": "string"
+          },
+          "状态": {
+            "type": "string"
+          },
+          "奖励点数": {
+            "type": "number"
+          },
+          "奖励经验": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "描述",
+          "进度",
+          "状态",
+          "奖励点数",
+          "奖励经验"
+        ]
+      }
+    }
+  },
+  "required": [
+    "世界",
+    "仙儿",
+    "主角",
+    "社稷",
+    "人口",
+    "资源",
+    "田亩",
+    "建筑",
+    "法律",
+    "军事",
+    "宗族",
+    "外交",
+    "情报",
+    "名分",
+    "商城",
+    "任务"
+  ]
+}
