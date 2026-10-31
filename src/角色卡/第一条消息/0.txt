@@ -30,4 +30,4 @@
 
 晨风卷过荒草，远处传来一两声不知名的鸟叫。陈默抬起头，看见天边泛起第一线白。
 
-<StatusBar春秋/>
+<StatusPlaceHolderImpl/>
