@@ -20,10 +20,31 @@
       </div>
       <div class="row">
         <span class="dim small exp-label">经验</span>
-        <div class="bar bronze exp">
+        <div class="bar bronze stat-bar">
           <div :style="{ width: 经验百分比 }"></div>
         </div>
-        <span class="dim small exp-num">{{ store.data.社稷.经验 }}/{{ store.data.社稷.升级所需 }}</span>
+        <span class="dim small stat-num">{{ store.data.社稷.经验 }}/{{ store.data.社稷.升级所需 }}</span>
+      </div>
+      <div class="row">
+        <span class="dim small exp-label">生命</span>
+        <div class="bar life stat-bar">
+          <div :style="{ width: `${store.data.主角.生命}%` }"></div>
+        </div>
+        <span class="dim small stat-num" :class="{ low: store.data.主角.生命 < 30 }">{{ store.data.主角.生命 }}</span>
+      </div>
+      <div class="row">
+        <span class="dim small exp-label">饱腹</span>
+        <div class="bar hunger stat-bar">
+          <div :style="{ width: `${store.data.主角.饱腹}%` }"></div>
+        </div>
+        <span class="dim small stat-num" :class="{ low: store.data.主角.饱腹 < 30 }">{{ store.data.主角.饱腹 }}</span>
+      </div>
+      <div class="row">
+        <span class="dim small exp-label">口渴</span>
+        <div class="bar thirst stat-bar">
+          <div :style="{ width: `${store.data.主角.口渴}%` }"></div>
+        </div>
+        <span class="dim small stat-num" :class="{ low: store.data.主角.口渴 < 30 }">{{ store.data.主角.口渴 }}</span>
       </div>
     </div>
 
@@ -110,7 +131,6 @@ const 经验百分比 = computed(() => {
 
 .state {
   font-style: italic;
-  color: var(--text-dim);
 }
 
 .level-box {
@@ -138,18 +158,41 @@ const 经验百分比 = computed(() => {
   }
 }
 
-.exp {
+.stat-bar {
   flex: 1;
   min-width: 60px;
 }
 
 .exp-label {
   letter-spacing: 2px;
+  min-width: 2em;
 }
 
-.exp-num {
+.stat-num {
   font-variant-numeric: tabular-nums;
   color: var(--gold-bright);
+  min-width: 3em;
+  text-align: right;
+
+  &.low {
+    color: var(--danger);
+    font-weight: bold;
+  }
+}
+
+.bar.life > div {
+  background: linear-gradient(90deg, #a8443a, #e08a7a);
+  box-shadow: 0 0 7px rgba(224, 138, 122, 0.4);
+}
+
+.bar.hunger > div {
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-bright));
+  box-shadow: 0 0 7px rgba(200, 160, 74, 0.4);
+}
+
+.bar.thirst > div {
+  background: linear-gradient(90deg, #3a6fa8, #6fb3e0);
+  box-shadow: 0 0 7px rgba(111, 179, 224, 0.4);
 }
 
 .sub-list {

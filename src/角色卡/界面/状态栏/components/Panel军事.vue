@@ -4,7 +4,14 @@
     <div class="military-box">
       <div class="row">
         <span class="seal">{{ 军势称号 }}</span>
-        <span class="dim small">{{ 战车 }} 乘 · 甲士 {{ store.data.军事.甲士 }} · 徒兵 {{ store.data.军事.徒兵 }}</span>
+        <span class="total-army">总兵力 {{ 总兵力 }} 人</span>
+      </div>
+      <div class="row dim small">
+        <span>{{ 战车 }} 乘</span>
+        <span class="dot">·</span>
+        <span>甲士 {{ store.data.军事.甲士 }}</span>
+        <span class="dot">·</span>
+        <span>徒兵 {{ store.data.军事.徒兵 }}</span>
       </div>
       <div class="chariots">
         <template v-if="store.data.军事.战车 > 0">
@@ -17,18 +24,33 @@
         <span>训练度 {{ store.data.军事.训练度 }}</span>
         <span class="dot">·</span>
         <span>士气 {{ store.data.军事.士气 }}</span>
-        <span class="dot">·</span>
-        <span>军粮 {{ store.data.军事.军粮 }}</span>
       </div>
     </div>
+
+    <!-- 军备资源 -->
+    <CollapsibleMini title="军备资源" :count="_.size(store.data.军事.资源)">
+      <div v-if="!_.isEmpty(store.data.军事.资源)" class="resource-grid">
+        <div v-for="(v, name) in store.data.军事.资源" :key="name" class="resource-cell">
+          <span class="resource-name">{{ name }}</span>
+          <span class="resource-value">{{ v }}</span>
+        </div>
+      </div>
+      <div v-else class="empty">暂无军备，戈矛弓甲皆缺</div>
+    </CollapsibleMini>
 
     <!-- 将领 -->
     <CollapsibleMini title="将领" :count="_.size(store.data.军事.将领)">
       <div v-if="!_.isEmpty(store.data.军事.将领)" class="sub-list">
-        <div v-for="(g, name) in store.data.军事.将领" :key="name" class="list-item">
-          <span class="general-name">{{ name }}</span>
-          <span class="dim small">{{ g.专长 }}</span>
-          <span class="loyalty">忠心 {{ g.忠心 }}</span>
+        <div v-for="(g, name) in store.data.军事.将领" :key="name" class="list-item column">
+          <div class="row">
+            <span class="general-name">{{ name }}</span>
+            <span class="dim small">{{ g.性别 }} · {{ g.年龄 }}岁</span>
+            <span class="dim small">{{ g.专长 }}</span>
+          </div>
+          <div class="row dim small">
+            <span class="loyalty">忠心 {{ g.忠心 }}</span>
+            <span class="command">统兵 {{ g.统兵 }} 人</span>
+          </div>
         </div>
       </div>
       <div v-else class="empty">尚无将领，可从宗族俊才或流民中招揽</div>
@@ -44,6 +66,7 @@ import { useDataStore } from '../store';
 const store = useDataStore();
 
 const 战车 = computed(() => store.data.军事.战车);
+const 总兵力 = computed(() => store.data.军事.甲士 + store.data.军事.徒兵);
 const 军势称号 = computed(() => {
   const n = store.data.军事.战车;
   if (n >= 10000) return '万乘之主';
@@ -73,6 +96,15 @@ const 军势称号 = computed(() => {
   border-radius: 11px;
 }
 
+.total-army {
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--parchment);
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
 .chariots {
   display: flex;
   align-items: center;
@@ -98,10 +130,46 @@ const 军势称号 = computed(() => {
   }
 }
 
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.resource-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 7px 2px 6px;
+  background: linear-gradient(180deg, rgba(200, 85, 61, 0.1), rgba(200, 85, 61, 0.03));
+  border: 1px solid rgba(200, 85, 61, 0.25);
+  border-top: 2px solid rgba(200, 85, 61, 0.5);
+  border-radius: 7px;
+}
+
+.resource-name {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.resource-value {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e8a48e;
+  font-variant-numeric: tabular-nums;
+}
+
 .sub-list {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.column {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .general-name {
@@ -110,8 +178,11 @@ const 军势称号 = computed(() => {
 }
 
 .loyalty {
-  margin-left: auto;
-  font-size: 11.5px;
   color: var(--jade);
+}
+
+.command {
+  margin-left: auto;
+  color: var(--gold-bright);
 }
 </style>

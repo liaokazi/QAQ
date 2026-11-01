@@ -131,6 +131,15 @@
         "衣着": {
           "type": "string"
         },
+        "生命": {
+          "type": "number"
+        },
+        "饱腹": {
+          "type": "number"
+        },
+        "口渴": {
+          "type": "number"
+        },
         "系统背包": {
           "type": "object",
           "propertyNames": {
@@ -214,6 +223,9 @@
         "当前状态",
         "当前姿势",
         "衣着",
+        "生命",
+        "饱腹",
+        "口渴",
         "系统背包",
         "妻妾"
       ]
@@ -235,6 +247,9 @@
         },
         "点数": {
           "type": "number"
+        },
+        "封域风貌": {
+          "type": "string"
         }
       },
       "required": [
@@ -242,7 +257,8 @@
         "领域半径",
         "经验",
         "升级所需",
-        "点数"
+        "点数",
+        "封域风貌"
       ]
     },
     "人口": {
@@ -254,7 +270,13 @@
         "劳力": {
           "type": "number"
         },
-        "老幼": {
+        "老": {
+          "type": "number"
+        },
+        "幼": {
+          "type": "number"
+        },
+        "女": {
           "type": "number"
         },
         "国人": {
@@ -276,7 +298,9 @@
       "required": [
         "总数",
         "劳力",
-        "老幼",
+        "老",
+        "幼",
+        "女",
         "国人",
         "野人",
         "奴隶",
@@ -285,42 +309,28 @@
       ]
     },
     "资源": {
-      "type": "object",
-      "properties": {
-        "粮食": {
-          "type": "number"
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "粮食": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "粮食"
+          ]
         },
-        "木材": {
-          "type": "number"
-        },
-        "石料": {
-          "type": "number"
-        },
-        "铜": {
-          "type": "number"
-        },
-        "铁": {
-          "type": "number"
-        },
-        "盐": {
-          "type": "number"
-        },
-        "丝": {
-          "type": "number"
-        },
-        "牲畜": {
-          "type": "number"
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "资源名"
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
         }
-      },
-      "required": [
-        "粮食",
-        "木材",
-        "石料",
-        "铜",
-        "铁",
-        "盐",
-        "丝",
-        "牲畜"
       ]
     },
     "田亩": {
@@ -461,6 +471,40 @@
         "已颁律令"
       ]
     },
+    "文官": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "文官名"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "性别": {
+            "type": "string"
+          },
+          "年龄": {
+            "type": "number"
+          },
+          "职掌": {
+            "type": "string"
+          },
+          "才能": {
+            "type": "number"
+          },
+          "忠心": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "性别",
+          "年龄",
+          "职掌",
+          "才能",
+          "忠心"
+        ]
+      }
+    },
     "军事": {
       "type": "object",
       "properties": {
@@ -479,8 +523,15 @@
         "士气": {
           "type": "string"
         },
-        "军粮": {
-          "type": "string"
+        "资源": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "军备名"
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
         },
         "将领": {
           "type": "object",
@@ -491,16 +542,28 @@
           "additionalProperties": {
             "type": "object",
             "properties": {
+              "性别": {
+                "type": "string"
+              },
+              "年龄": {
+                "type": "number"
+              },
               "专长": {
                 "type": "string"
               },
               "忠心": {
                 "type": "number"
+              },
+              "统兵": {
+                "type": "number"
               }
             },
             "required": [
+              "性别",
+              "年龄",
               "专长",
-              "忠心"
+              "忠心",
+              "统兵"
             ]
           }
         }
@@ -511,7 +574,7 @@
         "徒兵",
         "训练度",
         "士气",
-        "军粮",
+        "资源",
         "将领"
       ]
     },
@@ -939,6 +1002,7 @@
     "田亩",
     "建筑",
     "法律",
+    "文官",
     "军事",
     "宗族",
     "外交",

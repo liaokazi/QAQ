@@ -1,6 +1,6 @@
 <template>
   <div class="panel-content">
-    <!-- 领地徽章与沙盘 -->
+    <!-- 领地徽章与封域风貌 -->
     <div class="realm">
       <div class="row">
         <span class="seal">{{ 称号 }}</span>
@@ -9,20 +9,13 @@
       <div class="row gains">
         <span v-for="(v, k) in 增益" :key="k" class="gain-chip">⚡{{ k }} +{{ v }}%</span>
       </div>
-      <div class="sandbox">
-        <div class="sandbox-row">
-          <span class="sb-label">封域</span>
-          <span class="sb-value">{{ store.data.社稷.领域半径 }} 里</span>
-          <span class="sb-label">人口</span>
-          <span class="sb-value">{{ store.data.人口.总数 }}</span>
-        </div>
-        <div class="sandbox-row">
-          <span class="sb-label">建筑</span>
-          <span class="sb-value">{{ 建筑总数 }}</span>
-          <span class="sb-label">垦田</span>
-          <span class="sb-value">{{ store.data.田亩.垦田总数 }} 亩</span>
-        </div>
+      <div class="realm-stats">
+        <span class="rs">封域 <b>{{ store.data.社稷.领域半径 }} 里</b></span>
+        <span class="rs">人口 <b>{{ store.data.人口.总数 }}</b></span>
+        <span class="rs">建筑 <b>{{ 建筑总数 }}</b></span>
+        <span class="rs">垦田 <b>{{ store.data.田亩.垦田总数 }} 亩</b></span>
       </div>
+      <div class="scenery">{{ store.data.社稷.封域风貌 }}</div>
     </div>
 
     <!-- 人口 -->
@@ -32,7 +25,12 @@
         <span class="pop-cell">野人 <b>{{ store.data.人口.野人 }}</b></span>
         <span class="pop-cell">奴隶 <b>{{ store.data.人口.奴隶 }}</b></span>
         <span class="pop-cell">流民 <b>{{ store.data.人口.流民 }}</b></span>
-        <span class="dim small">劳力 {{ store.data.人口.劳力 }} · 老幼 {{ store.data.人口.老幼 }}</span>
+      </div>
+      <div class="row pop-row">
+        <span class="pop-cell">劳力 <b>{{ store.data.人口.劳力 }}</b></span>
+        <span class="pop-cell">老 <b>{{ store.data.人口.老 }}</b></span>
+        <span class="pop-cell">幼 <b>{{ store.data.人口.幼 }}</b></span>
+        <span class="pop-cell">女 <b>{{ store.data.人口.女 }}</b></span>
       </div>
       <div class="row">
         <span class="dim small">民心</span>
@@ -90,14 +88,38 @@
       <div v-else class="empty">后期解锁（发电机、蒸汽机……）</div>
     </CollapsibleMini>
 
-    <!-- 资源 -->
-    <CollapsibleMini title="资源 · 公有" :count="资源合计">
-      <div class="resource-grid">
-        <div v-for="(v, name) in store.data.资源" :key="name" class="resource-cell">
+    <!-- 资源: 粮食固定 + 其他动态 -->
+    <CollapsibleMini title="资源 · 公有" :count="资源种类数">
+      <div class="grain-cell" :class="{ famine: 粮食 <= 0 }">
+        <span class="grain-name">🌾 粮食</span>
+        <span class="grain-value">{{ 格式石(粮食) }}</span>
+        <span class="grain-days" :class="{ famine: 粮食 <= 0 }">{{ 可吃天数 }}</span>
+      </div>
+      <div v-if="其他资源.length" class="resource-grid">
+        <div v-for="([name, v]) in 其他资源" :key="name" class="resource-cell">
           <span class="resource-name">{{ name }}</span>
           <span class="resource-value">{{ v }}</span>
         </div>
       </div>
+      <div v-else class="empty">暂无其他公物</div>
+    </CollapsibleMini>
+
+    <!-- 文官 -->
+    <CollapsibleMini title="文官" :count="_.size(store.data.文官)">
+      <div v-if="!_.isEmpty(store.data.文官)" class="sub-list">
+        <div v-for="(o, name) in store.data.文官" :key="name" class="list-item column">
+          <div class="row">
+            <span class="official-name">{{ name }}</span>
+            <span class="dim small">{{ o.性别 }} · {{ o.年龄 }}岁</span>
+            <span class="duty">{{ o.职掌 }}</span>
+          </div>
+          <div class="row dim small">
+            <span>才能 {{ o.才能 }}</span>
+            <span>忠心 {{ o.忠心 }}</span>
+          </div>
+        </div>
+      </div>
+      <div v-else class="empty">尚无文官，可从流民士人中举荐</div>
     </CollapsibleMini>
 
     <!-- 法律 -->
@@ -142,8 +164,25 @@ const store = useDataStore();
 const 称号 = computed(() => 按等级取表(store.data.社稷.领地等级).称号);
 const 增益 = computed(() => 按等级取增益(store.data.社稷.领地等级));
 const 建筑总数 = computed(() => _.size(store.data.建筑.常制) + _.size(store.data.建筑.特殊));
-const 资源合计 = computed(() => _.sum(_.values(store.data.资源)));
 const 本土宗族活跃 = computed(() => store.data.情报.天下大事.本土宗族活跃 ?? []);
+
+const 资源列表 = computed(() => _.entries(store.data.资源));
+const 粮食 = computed(() => _.get(store.data.资源, '粮食', 0));
+const 其他资源 = computed(() => 资源列表.value.filter(([name]) => name !== '粮食'));
+const 资源种类数 = computed(() => 资源列表.value.length);
+
+const 格式石 = (n: number) => {
+  if (!n) return '0石';
+  return n >= 10000 ? `${(n / 10000).toFixed(1)}万石` : `${Math.round(n)}石`;
+};
+
+const 可吃天数 = computed(() => {
+  const 人口 = store.data.人口.总数;
+  if (!人口) return '—';
+  if (粮食.value <= 0) return '断粮！';
+  const 天数 = Math.floor(粮食.value / (人口 * 0.05));
+  return `可吃 ${天数} 日`;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -178,11 +217,11 @@ const 本土宗族活跃 = computed(() => store.data.情报.天下大事.本土�
   background: rgba(127, 209, 168, 0.07);
 }
 
-.sandbox {
+.realm-stats {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 7px 9px;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 5px 9px;
   border: 1px solid var(--line-soft);
   border-radius: 9px;
   background-image:
@@ -191,24 +230,26 @@ const 本土宗族活跃 = computed(() => store.data.情报.天下大事.本土�
   background-size: 22px 22px;
 }
 
-.sandbox-row {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  flex-wrap: wrap;
-}
-
-.sb-label {
+.rs {
   color: var(--text-dim);
   font-size: 11.5px;
   letter-spacing: 1px;
+
+  b {
+    color: var(--gold-bright);
+    font-variant-numeric: tabular-nums;
+  }
 }
 
-.sb-value {
-  color: var(--gold-bright);
-  font-weight: bold;
-  font-variant-numeric: tabular-nums;
-  margin-right: 8px;
+.scenery {
+  padding: 7px 9px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--parchment);
+  opacity: 0.92;
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.18);
 }
 
 .pop-row {
@@ -275,10 +316,49 @@ const 本土宗族活跃 = computed(() => store.data.情报.天下大事.本土�
   color: #e8a48e;
 }
 
+.grain-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: linear-gradient(90deg, rgba(127, 209, 168, 0.1), rgba(127, 209, 168, 0.03));
+  border: 1px solid rgba(127, 209, 168, 0.28);
+  border-radius: 8px;
+
+  &.famine {
+    background: linear-gradient(90deg, rgba(224, 138, 122, 0.12), rgba(224, 138, 122, 0.03));
+    border-color: rgba(224, 138, 122, 0.4);
+  }
+}
+
+.grain-name {
+  font-weight: bold;
+  color: var(--gold-bright);
+}
+
+.grain-value {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--parchment);
+  font-variant-numeric: tabular-nums;
+}
+
+.grain-days {
+  margin-left: auto;
+  color: var(--jade);
+  font-size: 12px;
+  font-weight: bold;
+
+  &.famine {
+    color: var(--danger);
+  }
+}
+
 .resource-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
+  margin-top: 6px;
 }
 
 .resource-cell {
@@ -304,6 +384,20 @@ const 本土宗族活跃 = computed(() => store.data.情报.天下大事.本土�
   font-weight: bold;
   color: var(--gold-bright);
   font-variant-numeric: tabular-nums;
+}
+
+.official-name {
+  font-weight: bold;
+  color: var(--parchment);
+}
+
+.duty {
+  font-size: 11.5px;
+  color: var(--gold-bright);
+  background: rgba(200, 160, 74, 0.09);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  padding: 0 6px;
 }
 
 .law-item {

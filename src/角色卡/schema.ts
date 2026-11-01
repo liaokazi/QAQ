@@ -33,6 +33,9 @@ export const Schema = z.object({
     当前状态: z.string(),
     当前姿势: z.string(),
     衣着: z.string(),
+    生命: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
+    饱腹: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
+    口渴: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
     系统背包: z.record(
       z.string().describe('物品名'),
       z.object({
@@ -64,12 +67,15 @@ export const Schema = z.object({
     经验: z.coerce.number(),
     升级所需: z.coerce.number(),
     点数: z.coerce.number(),
+    封域风貌: z.string(),
   }),
 
   人口: z.object({
     总数: z.coerce.number(),
     劳力: z.coerce.number(),
-    老幼: z.coerce.number(),
+    老: z.coerce.number(),
+    幼: z.coerce.number(),
+    女: z.coerce.number(),
     国人: z.coerce.number(),
     野人: z.coerce.number(),
     奴隶: z.coerce.number(),
@@ -77,16 +83,12 @@ export const Schema = z.object({
     民心: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
   }),
 
-  资源: z.object({
-    粮食: z.coerce.number(),
-    木材: z.coerce.number(),
-    石料: z.coerce.number(),
-    铜: z.coerce.number(),
-    铁: z.coerce.number(),
-    盐: z.coerce.number(),
-    丝: z.coerce.number(),
-    牲畜: z.coerce.number(),
-  }),
+  资源: z.intersection(
+    z.object({
+      粮食: z.coerce.number(),
+    }),
+    z.record(z.string().describe('资源名'), z.coerce.number()),
+  ),
 
   田亩: z.object({
     垦田总数: z.coerce.number(),
@@ -130,18 +132,32 @@ export const Schema = z.object({
     ),
   }),
 
+  文官: z.record(
+    z.string().describe('文官名'),
+    z.object({
+      性别: z.string(),
+      年龄: z.coerce.number(),
+      职掌: z.string(),
+      才能: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
+      忠心: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
+    }),
+  ),
+
   军事: z.object({
     战车: z.coerce.number(),
     甲士: z.coerce.number(),
     徒兵: z.coerce.number(),
     训练度: z.string(),
     士气: z.string(),
-    军粮: z.string(),
+    资源: z.record(z.string().describe('军备名'), z.coerce.number()),
     将领: z.record(
       z.string().describe('将领名'),
       z.object({
+        性别: z.string(),
+        年龄: z.coerce.number(),
         专长: z.string(),
         忠心: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
+        统兵: z.coerce.number(),
       }),
     ),
   }),
