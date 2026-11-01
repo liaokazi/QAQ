@@ -132,12 +132,15 @@
           "type": "string"
         },
         "生命": {
+          "default": 100,
           "type": "number"
         },
         "饱腹": {
+          "default": 70,
           "type": "number"
         },
         "口渴": {
+          "default": 75,
           "type": "number"
         },
         "系统背包": {
@@ -223,9 +226,6 @@
         "当前状态",
         "当前姿势",
         "衣着",
-        "生命",
-        "饱腹",
-        "口渴",
         "系统背包",
         "妻妾"
       ]
@@ -249,6 +249,7 @@
           "type": "number"
         },
         "封域风貌": {
+          "default": "",
           "type": "string"
         }
       },
@@ -257,8 +258,7 @@
         "领域半径",
         "经验",
         "升级所需",
-        "点数",
-        "封域风貌"
+        "点数"
       ]
     },
     "人口": {
@@ -271,12 +271,15 @@
           "type": "number"
         },
         "老": {
+          "default": 0,
           "type": "number"
         },
         "幼": {
+          "default": 0,
           "type": "number"
         },
         "女": {
+          "default": 0,
           "type": "number"
         },
         "国人": {
@@ -298,9 +301,6 @@
       "required": [
         "总数",
         "劳力",
-        "老",
-        "幼",
-        "女",
         "国人",
         "野人",
         "奴隶",
@@ -309,6 +309,9 @@
       ]
     },
     "资源": {
+      "default": {
+        "粮食": 0
+      },
       "allOf": [
         {
           "type": "object",
@@ -472,6 +475,7 @@
       ]
     },
     "文官": {
+      "default": {},
       "type": "object",
       "propertyNames": {
         "type": "string",
@@ -481,28 +485,26 @@
         "type": "object",
         "properties": {
           "性别": {
+            "default": "未知",
             "type": "string"
           },
           "年龄": {
+            "default": 0,
             "type": "number"
           },
           "职掌": {
+            "default": "",
             "type": "string"
           },
           "才能": {
+            "default": 50,
             "type": "number"
           },
           "忠心": {
+            "default": 50,
             "type": "number"
           }
-        },
-        "required": [
-          "性别",
-          "年龄",
-          "职掌",
-          "才能",
-          "忠心"
-        ]
+        }
       }
     },
     "军事": {
@@ -524,6 +526,7 @@
           "type": "string"
         },
         "资源": {
+          "default": {},
           "type": "object",
           "propertyNames": {
             "type": "string",
@@ -543,28 +546,26 @@
             "type": "object",
             "properties": {
               "性别": {
+                "default": "未知",
                 "type": "string"
               },
               "年龄": {
+                "default": 0,
                 "type": "number"
               },
               "专长": {
+                "default": "",
                 "type": "string"
               },
               "忠心": {
+                "default": 50,
                 "type": "number"
               },
               "统兵": {
+                "default": 0,
                 "type": "number"
               }
-            },
-            "required": [
-              "性别",
-              "年龄",
-              "专长",
-              "忠心",
-              "统兵"
-            ]
+            }
           }
         }
       },
@@ -574,7 +575,6 @@
         "徒兵",
         "训练度",
         "士气",
-        "资源",
         "将领"
       ]
     },
@@ -998,11 +998,9 @@
     "主角",
     "社稷",
     "人口",
-    "资源",
     "田亩",
     "建筑",
     "法律",
-    "文官",
     "军事",
     "宗族",
     "外交",

@@ -33,9 +33,9 @@ export const Schema = z.object({
     当前状态: z.string(),
     当前姿势: z.string(),
     衣着: z.string(),
-    生命: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
-    饱腹: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
-    口渴: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
+    生命: z.coerce.number().transform(value => _.clamp(value, 0, 100)).prefault(100),
+    饱腹: z.coerce.number().transform(value => _.clamp(value, 0, 100)).prefault(70),
+    口渴: z.coerce.number().transform(value => _.clamp(value, 0, 100)).prefault(75),
     系统背包: z.record(
       z.string().describe('物品名'),
       z.object({
@@ -67,15 +67,15 @@ export const Schema = z.object({
     经验: z.coerce.number(),
     升级所需: z.coerce.number(),
     点数: z.coerce.number(),
-    封域风貌: z.string(),
+    封域风貌: z.string().prefault(''),
   }),
 
   人口: z.object({
     总数: z.coerce.number(),
     劳力: z.coerce.number(),
-    老: z.coerce.number(),
-    幼: z.coerce.number(),
-    女: z.coerce.number(),
+    老: z.coerce.number().prefault(0),
+    幼: z.coerce.number().prefault(0),
+    女: z.coerce.number().prefault(0),
     国人: z.coerce.number(),
     野人: z.coerce.number(),
     奴隶: z.coerce.number(),
@@ -83,12 +83,14 @@ export const Schema = z.object({
     民心: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
   }),
 
-  资源: z.intersection(
-    z.object({
-      粮食: z.coerce.number(),
-    }),
-    z.record(z.string().describe('资源名'), z.coerce.number()),
-  ),
+  资源: z
+    .intersection(
+      z.object({
+        粮食: z.coerce.number(),
+      }),
+      z.record(z.string().describe('资源名'), z.coerce.number()),
+    )
+    .prefault({ 粮食: 0 }),
 
   田亩: z.object({
     垦田总数: z.coerce.number(),
@@ -132,16 +134,18 @@ export const Schema = z.object({
     ),
   }),
 
-  文官: z.record(
-    z.string().describe('文官名'),
-    z.object({
-      性别: z.string(),
-      年龄: z.coerce.number(),
-      职掌: z.string(),
-      才能: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
-      忠心: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
-    }),
-  ),
+  文官: z
+    .record(
+      z.string().describe('文官名'),
+      z.object({
+        性别: z.string().prefault('未知'),
+        年龄: z.coerce.number().prefault(0),
+        职掌: z.string().prefault(''),
+        才能: z.coerce.number().transform(value => _.clamp(value, 0, 100)).prefault(50),
+        忠心: z.coerce.number().transform(value => _.clamp(value, 0, 100)).prefault(50),
+      }),
+    )
+    .prefault({}),
 
   军事: z.object({
     战车: z.coerce.number(),
@@ -149,15 +153,15 @@ export const Schema = z.object({
     徒兵: z.coerce.number(),
     训练度: z.string(),
     士气: z.string(),
-    资源: z.record(z.string().describe('军备名'), z.coerce.number()),
+    资源: z.record(z.string().describe('军备名'), z.coerce.number()).prefault({}),
     将领: z.record(
       z.string().describe('将领名'),
       z.object({
-        性别: z.string(),
-        年龄: z.coerce.number(),
-        专长: z.string(),
-        忠心: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
-        统兵: z.coerce.number(),
+        性别: z.string().prefault('未知'),
+        年龄: z.coerce.number().prefault(0),
+        专长: z.string().prefault(''),
+        忠心: z.coerce.number().transform(value => _.clamp(value, 0, 100)).prefault(50),
+        统兵: z.coerce.number().prefault(0),
       }),
     ),
   }),
